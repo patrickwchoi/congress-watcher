@@ -1,0 +1,7 @@
+{
+  "out": "./docs",
+  "exclude": ["**/*.spec.ts"],
+  "name": "congress-watcher",
+  "readme": "README.md",
+  "theme": "default"
+}

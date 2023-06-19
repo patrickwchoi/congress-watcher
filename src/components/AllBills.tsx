@@ -2,19 +2,29 @@ import { useEffect, useState } from 'react';
 import Bill from '@/components/Bill';
 import { BillData } from '@/types/index';
 
+/**
+ * AllBills component that fetches bills using searchQuery and renders them using Bill Component.
+ * 
+ * It maintains two pieces of state: 'data' for holding the fetched bill data, 
+ * and 'searchQuery' to control the search query for fetching bills.
+ *
+ * It uses a useEffect to fetch the bill data whenever the 'searchQuery' state changes.
+ * The fetched data is then stored in the 'data' state.
+ * 
+ * @returns {JSX.Element} The AllBills component.
+ */
+
 const AllBills = () => {
   const [data, setData] = useState<BillData | null>(null);
-  const [query, setQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(`/api/bills?query=${query}`);
+      const res = await fetch(`/api/bills?searchQuery=${searchQuery}`); //the url is what defines req in api page
       const json = await res.json();
       setData(json);
-      // console.log(data.results[0].bills)
     };
-    // https://api.propublica.org/congress/v1/bills/search.json?query=megahertz
     fetchData();
-  }, [query]);
+  }, [searchQuery]);
 
   return (
     <div className="flex flex-col bg-blue-100">
