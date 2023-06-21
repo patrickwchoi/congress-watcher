@@ -31,7 +31,7 @@ const AllBills = () => {
 
   return (
     <div className="flex flex-col bg-blue-100">
-      <BillSearchBar/>
+      <BillSearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
       <h1>Bills:</h1>
       {data && data.results[0].bills.map((bill) => (
         <Bill key={bill.bill_id} bill={bill}/>

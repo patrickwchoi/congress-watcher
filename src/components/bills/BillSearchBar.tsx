@@ -1,15 +1,19 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+interface BillSearchBarProps {
+  searchQuery: string;
+  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+}
 
-const BillSearchBar = () => {
-
-  const [searchQuery, setSearchQuery] = useState('');
+const BillSearchBar: React.FC<BillSearchBarProps> = ({searchQuery, setSearchQuery}) => {
   
+  const [searchBar, setSearchBar] = useState(''); //search bar state, will update searchQuery when user submitted
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
+    setSearchBar(e.target.value);
   }
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(searchQuery);
+    setSearchQuery(searchBar)
+    setSearchBar('');
   }
 
   return (
@@ -19,7 +23,7 @@ const BillSearchBar = () => {
           type="text" 
           placeholder="Search for a bill"
           onChange={handleChange}
-          value={searchQuery}
+          value={searchBar}
         />
         <button>
           Search
