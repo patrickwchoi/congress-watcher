@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
-import Bill from '@/components/Bill';
+import Bill from '@/components/bills/Bill';
+import BillSearchBar from '@/components/bills/BillSearchBar';
 import { BillData } from '@/types/index';
+
+// import { Bill } from '@/components/bills';
 
 /**
  * AllBills component that fetches bills using searchQuery and renders them using Bill Component.
@@ -28,6 +31,7 @@ const AllBills = () => {
 
   return (
     <div className="flex flex-col bg-blue-100">
+      <BillSearchBar/>
       <h1>Bills:</h1>
       {data && data.results[0].bills.map((bill) => (
         <Bill key={bill.bill_id} bill={bill}/>

@@ -1,4 +1,4 @@
-import AllBills from '@/components/AllBills';
+import AllBills from '@/components/bills/AllBills';
 import { useEffect, useState } from 'react';
 // import '@/styles/global.css';
 
