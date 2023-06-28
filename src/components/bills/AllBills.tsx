@@ -23,7 +23,7 @@ const AllBills = () => {
   const [offset, setOffset] = useState(0);
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(`/api/bills?searchQuery=${searchQuery}&offset=${offset}`); //the url is what defines req in api page
+      const res = await fetch(`/api/bills/searchBills?searchQuery=${searchQuery}&offset=${offset}`); //the url is what defines req in api page
       const json = await res.json();
       setData(json);
     };
