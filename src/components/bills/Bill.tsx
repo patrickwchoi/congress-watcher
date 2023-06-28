@@ -9,19 +9,17 @@ import React from 'react';
  * @returns {JSX.Element} The Bill component.
  */
 const Bill: React.FC<BillProps> = ({ bill }) => {
-  const handleLink = () => {
-    window.open(bill.congressdotgov_url, '_blank');
-  };
+
   return (
     <div className='bill-component flex flex-col m-4 p-2 border-2 border-black'>
       <div className='bill-header flex flex-row justify-between border-b-2 border-gray-500'>
-        <h1 className='text-1xl font-bold'>{bill.number} - {bill.title}</h1>
+        <h1 className='text-1xl font-bold'>{bill.title}</h1>
         <p className='text-base'>{bill.introduced_date}</p> 
       </div>
 
       <div className='bill-content flex flex-col'>
         <div className='bill-sponsor flex flex-row gap-x-2'>
-          <h3 className='text-1xl'>Sponsor: {bill.sponsor_title} {bill.sponsor_name},</h3>
+          <h3 className='text-1xl'>Sponsor: {bill.sponsor_name},</h3>
           <p className='text-base'>{bill.sponsor_party} - {bill.sponsor_state}</p>
         </div>
         <div className='bill-status'>
@@ -31,7 +29,6 @@ const Bill: React.FC<BillProps> = ({ bill }) => {
         <div className='bill-summary'>
           <p>{bill.summary}</p>
         </div>
-        <button onClick={handleLink}>View on Congres.gov</button>
       </div>
     </div>
   )

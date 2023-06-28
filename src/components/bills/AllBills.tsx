@@ -20,15 +20,14 @@ import { BillData } from '@/types/index';
 const AllBills = () => {
   const [data, setData] = useState<BillData | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [offset, setOffset] = useState(0);
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(`/api/bills?searchQuery=${searchQuery}&offset=${offset}`); //the url is what defines req in api page
+      const res = await fetch(`/api/bills?searchQuery=${searchQuery}`); //the url is what defines req in api page
       const json = await res.json();
       setData(json);
     };
     fetchData();
-  }, [searchQuery, offset]);
+  }, [searchQuery]);
 
   return (
     <div className="flex flex-col bg-blue-100">
@@ -37,7 +36,6 @@ const AllBills = () => {
       {data && data.results[0].bills.map((bill) => (
         <Bill key={bill.bill_id} bill={bill}/>
       ))} 
-      <button onClick={() => setOffset(offset + 20)}>Next</button>
     </div>
   )
 }

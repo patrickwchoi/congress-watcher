@@ -26,12 +26,13 @@ import fetch from 'node-fetch';
  * @returns {Promise<void>} Nothing.
  */
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const {sort, dir, searchQuery, offset} = req.query;
+  const {sort, dir, searchQuery} = req.query;
+
   if (!process.env.PROPUBLICA_API_KEY) {
     throw new Error('PROPUBLICA_API_KEY must be defined');
   }
 
-  const response = await fetch(`https://api.propublica.org/congress/v1/bills/search.json?query=${searchQuery}&offset=${offset}`, {
+  const response = await fetch(`https://api.propublica.org/congress/v1/bills/search.json?query=${searchQuery}`, {
     headers: { 'X-API-Key': process.env.PROPUBLICA_API_KEY }
   });
 
