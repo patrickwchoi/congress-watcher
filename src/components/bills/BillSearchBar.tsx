@@ -3,7 +3,12 @@ interface BillSearchBarProps {
   searchQuery: string;
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
 }
-
+/**
+ * 
+ * @param searchQuery string that is used to search for bills. Will trigger useEffect to fetch new bills when updated.
+ * @param setSearchQuery
+ * @returns {JSX.Element} The SearchBar component.
+ */
 const BillSearchBar: React.FC<BillSearchBarProps> = ({searchQuery, setSearchQuery}) => {
   
   const [searchBar, setSearchBar] = useState(''); //search bar state, will update searchQuery when user submitted
