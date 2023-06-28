@@ -30,6 +30,7 @@ const Bill: React.FC<BillProps> = ({ bill }) => {
         </div>
         <div className='bill-summary'>
           <p>{bill.summary}</p>
+          <p>Debugging Purposes: {bill.bill_id}</p>
         </div>
         <button onClick={handleLink}>View on Congres.gov</button>
       </div>
