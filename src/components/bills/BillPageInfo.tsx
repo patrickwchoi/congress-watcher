@@ -6,7 +6,7 @@ import React from "react";
  * @param props.bill takes in a BillInfo object
  * @returns {JSX.Element}
  */
-const BillPageComponent: React.FC<BillProps> = ({ bill }) => {
+const BillPageInfo: React.FC<BillProps> = ({ bill }) => {
   const handleLink = () => {
     window.open(bill.congressdotgov_url, "_blank");
   };
@@ -44,4 +44,4 @@ const BillPageComponent: React.FC<BillProps> = ({ bill }) => {
   );
 };
 
-export default BillPageComponent;
+export default BillPageInfo;

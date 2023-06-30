@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { SpecificBillData } from "@/types/BillTypes";
-import BillPageComponent from "@/components/bills/BillPageComponent";
+import BillPageInfo from "@/components/bills/BillPageInfo";
 
 const BillPage = () => {
   const router = useRouter();
@@ -26,8 +26,11 @@ const BillPage = () => {
         `/api/bills/searchSpecificBill?congress=${congress}&bill_num=${billNum}`
       ); //the url is what defines req in api page
       const json = await res.json();
+      console.log('Received data from server:', json);
       setData(json);
-      setIsLoading(false);
+      if (json.status === "OK") {
+        setIsLoading(false);
+      }
     };
     fetchData();
   }, [congress, billNum]);
@@ -37,12 +40,12 @@ const BillPage = () => {
     <div>
       {
         data && data.results ? (
-          <BillPageComponent bill={data.results[0]} />
+          <BillPageInfo bill={data.results[0]} />
         ) : (
           <h1>Cannot Find Bill</h1>
-        )
-        //small bug where this will show for a split second before data is rendered, even with isLoading.
-        //can be fixed by adding combining state, but wanted to keep it simple for now
+          //small bug where this will show for a split second before data is rendered, even with isLoading.
+          //can be fixed by adding combining state, but wanted to keep it simple for now
+          )
       }
     </div>
   );
