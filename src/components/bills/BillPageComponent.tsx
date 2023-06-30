@@ -1,14 +1,13 @@
-import { BillProps } from '@/types/index';
+import { BillProps } from '@/types/BillTypes';
 import React from 'react';
+
 /**
- * Bill component that displays a bill's information.
- *
- * @param {BillProps} props - Object containing all bill information.
- * @param {object} props.bill - The bill object.
- *
- * @returns {JSX.Element} The Bill component.
+ * Individual Bill Page Component
+ * @param props.bill takes in a BillInfo object
+ * @returns {JSX.Element}
  */
-const Bill: React.FC<BillProps> = ({ bill }) => {
+const BillPageComponent: React.FC<BillProps> = ({ bill }) => {
+  
   const handleLink = () => {
     window.open(bill.congressdotgov_url, '_blank');
   };
@@ -38,4 +37,4 @@ const Bill: React.FC<BillProps> = ({ bill }) => {
   )
 }
 
-export default Bill;
+export default BillPageComponent;

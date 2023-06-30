@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import Bill from '@/components/bills/Bill';
+import BillItem from '@/components/bills/BillItem';
 import BillSearchBar from '@/components/bills/BillSearchBar';
-import { BillData } from '@/types/index';
+import { BillData } from '@/types/BillTypes';
 
 // import { Bill } from '@/components/bills';
 
@@ -35,7 +35,7 @@ const AllBills = () => {
       <BillSearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
       <h1>Bills:</h1>
       {data && data.results[0].bills.map((bill) => (
-        <Bill key={bill.bill_id} bill={bill}/>
+        <BillItem key={bill.bill_id} bill={bill}/>
       ))} 
       <button onClick={() => setOffset(offset + 20)}>Next</button>
     </div>
