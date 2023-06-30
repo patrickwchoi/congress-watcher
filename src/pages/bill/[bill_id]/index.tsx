@@ -7,7 +7,8 @@ const BillPage = () => {
   const router = useRouter();
   const { bill_id } = router.query; //derived from the folder name [bill_id].tsx
 
-  const [data, setData] = useState<SpecificBillData | null>(null);
+  const [billData, setBillData] = useState<SpecificBillData | null>(null);
+  const [amendmentsData, setAmendmentsData] = useState(null);
   const [billNum, setBillNum] = useState("");
   const [congress, setCongress] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -22,13 +23,21 @@ const BillPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(
+      const billRes = await fetch(
         `/api/bills/searchSpecificBill?congress=${congress}&bill_num=${billNum}`
       ); //the url is what defines req in api page
-      const json = await res.json();
-      console.log('Received data from server:', json);
-      setData(json);
-      if (json.status === "OK") {
+      const billJson = await billRes.json();
+      console.log('Received data from server:', billJson);
+      setBillData(billJson);
+
+      const amendmentsRes = await fetch(
+        `/api/bills/billAmendments?congress=${congress}&bill_num=${billNum}`
+      );
+      const amendmentsJson = await amendmentsRes.json();
+      console.log('Received amendments data from server:', amendmentsJson);
+      setAmendmentsData(amendmentsJson);
+
+      if (billJson.status === "OK") {
         setIsLoading(false);
       }
     };
@@ -39,14 +48,15 @@ const BillPage = () => {
   return (
     <div>
       {
-        data && data.results ? (
-          <BillPageInfo bill={data.results[0]} />
+        billData && billData.results ? (
+          <BillPageInfo bill={billData.results[0]} />
         ) : (
           <h1>Cannot Find Bill</h1>
           //small bug where this will show for a split second before data is rendered, even with isLoading.
           //can be fixed by adding combining state, but wanted to keep it simple for now
           )
       }
+      
     </div>
   );
 };
