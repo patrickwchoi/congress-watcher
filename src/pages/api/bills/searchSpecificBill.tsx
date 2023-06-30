@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import fetch from 'node-fetch';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const {sort, dir, congress, bill_num, offset} = req.query;
+  const {sort, dir, congress, bill_num} = req.query;
   if (!process.env.PROPUBLICA_API_KEY) {
     throw new Error('PROPUBLICA_API_KEY must be defined');
   }

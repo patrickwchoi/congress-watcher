@@ -43,3 +43,7 @@ export interface BillData {
 export interface BillProps {
   bill: BillInfo;
 }
+
+export interface SpecificBillData{
+  results: BillInfo[];
+}
