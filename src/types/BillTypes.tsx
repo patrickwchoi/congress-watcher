@@ -16,10 +16,10 @@ export interface BillInfo {
   govtrack_url: string;
   introduced_date: string;
   active: boolean;
-  house_passage: string|null;
-  senate_passage: string|null;
-  enacted: string|null;
-  vetoed: string|null;
+  house_passage: string | null;
+  senate_passage: string | null;
+  enacted: string | null;
+  vetoed: string | null;
   cosponsors: number;
   committees: string;
   committee_codes: string[];
@@ -44,6 +44,6 @@ export interface BillProps {
   bill: BillInfo;
 }
 
-export interface SpecificBillData{
+export interface SpecificBillData {
   results: BillInfo[];
 }
