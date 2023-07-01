@@ -29,15 +29,43 @@ export interface BillInfo {
   summary_short: string;
   latest_major_action: string;
 }
+export interface AmendmentInfo {
+  amendment_number: string;
+  slug: string;
+  sponsor_title: string;
+  sponsor: string;
+  sponsor_id: string;
+  sponsor_uri: string;
+  sponsor_party: string;
+  sponsor_state: string;
+  introduced_date: string;
+  title: string;
+  congressdotgov_url: string;
+  latest_major_action_date: string;
+  latest_major_action: string;
+}
 
 export interface BillResult {
   num_results: number;
   offset: number;
   bills: BillInfo[];
 }
+export interface AmendmentResult {
+  congress: string;
+  bill_id: string;
+  num_results: number;
+  offset: number;
+  amendments: AmendmentInfo[];
+}
 
 export interface BillData {
+  //whats returned from api call
   results: BillResult[];
+}
+
+export interface AmendmentsData {
+  //whats returned from api call
+  results: AmendmentResult[];
 }
 
 export interface BillProps {

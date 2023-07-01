@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { SpecificBillData } from "@/types/BillTypes";
+import { SpecificBillData, AmendmentsData } from "@/types/BillTypes";
 import BillPageInfo from "@/components/bills/BillPageInfo";
 
 const BillPage = () => {
@@ -8,7 +8,9 @@ const BillPage = () => {
   const { bill_id } = router.query; //derived from the folder name [bill_id].tsx
 
   const [billData, setBillData] = useState<SpecificBillData | null>(null);
-  const [amendmentsData, setAmendmentsData] = useState(null);
+  const [amendmentsData, setAmendmentsData] = useState<AmendmentsData | null>(
+    null
+  );
   const [billNum, setBillNum] = useState("");
   const [congress, setCongress] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -27,14 +29,14 @@ const BillPage = () => {
         `/api/bills/searchSpecificBill?congress=${congress}&bill_num=${billNum}`
       ); //the url is what defines req in api page
       const billJson = await billRes.json();
-      console.log('Received data from server:', billJson);
+      console.log("Received data from server:", billJson);
       setBillData(billJson);
 
       const amendmentsRes = await fetch(
         `/api/bills/billAmendments?congress=${congress}&bill_num=${billNum}`
       );
       const amendmentsJson = await amendmentsRes.json();
-      console.log('Received amendments data from server:', amendmentsJson);
+      console.log("Received amendments data from server:", amendmentsJson);
       setAmendmentsData(amendmentsJson);
 
       if (billJson.status === "OK") {
@@ -47,16 +49,28 @@ const BillPage = () => {
   if (isLoading) return <h1>Loading...</h1>;
   return (
     <div>
-      {
-        billData && billData.results ? (
-          <BillPageInfo bill={billData.results[0]} />
-        ) : (
-          <h1>Cannot Find Bill</h1>
-          //small bug where this will show for a split second before data is rendered, even with isLoading.
-          //can be fixed by adding combining state, but wanted to keep it simple for now
-          )
-      }
-      
+      {billData && billData.results ? (
+        <BillPageInfo bill={billData.results[0]} />
+      ) : (
+        <h1>Cannot Find Bill</h1>
+        //small bug where this will show for a split second before data is rendered, even with isLoading.
+        //can be fixed by adding combining state, but wanted to keep it simple for now
+      )}
+
+      {amendmentsData && amendmentsData.results[0].amendments.length != 0 ? (
+        <div>
+          <h1>Amendments</h1>
+          <ul>
+            {amendmentsData.results[0].amendments.map((amendment) => (
+              <li key={amendment.amendment_number}>
+                <a href={amendment.congressdotgov_url}>{amendment.title}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : (
+        <h1>No amendments</h1>
+      )}
     </div>
   );
 };
