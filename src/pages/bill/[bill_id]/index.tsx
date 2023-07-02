@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { SpecificBillData, AmendmentsData, SearchBillData } from "@/types/BillTypes";
+import { SpecificBillData, AmendmentsData, RelatedBillData } from "@/types/BillTypes";
 import BillPageInfo from "@/components/bills/BillPageInfo";
 
 const BillPage = () => {
@@ -9,7 +9,7 @@ const BillPage = () => {
 
   const [billData, setBillData] = useState<SpecificBillData | null>(null);
   const [amendmentsData, setAmendmentsData] = useState<AmendmentsData | null>(null);
-  const [relatedBillsData, setRelatedBillsData] = useState<SearchBillData | null>(null);
+  const [relatedBillsData, setRelatedBillsData] = useState<RelatedBillData | null>(null);
 
   const [billNum, setBillNum] = useState("");
   const [congress, setCongress] = useState("");
@@ -77,20 +77,20 @@ const BillPage = () => {
         <h1>No amendments</h1>
       )}
 
-      {/* {relatedBillsData && relatedBillsData.results.length != 0 ? (
+      {relatedBillsData && relatedBillsData.results.related_bills ? (
         <div>
           <h1>Related Bills</h1>
           <ul>
-            {relatedBillsData.results.map((bill) => (
+            {relatedBillsData.results.related_bills.map((bill) => (
               <li key={bill.bill_id}>
-                <a href={bill.congressdotgov_url}>{bill.title}</a>
+                <a>{bill.title}</a>
               </li>
             ))}
           </ul>
         </div>
       ) : (
         <h1>No related bills</h1>
-      )} */}
+      )}
     </div>
   );
 };

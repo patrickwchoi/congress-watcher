@@ -1,6 +1,5 @@
 export interface BillInfo {
   bill_id: string;
-  // other properties...
   bill_type: string;
   number: string;
   bill_uri: string;
@@ -27,6 +26,7 @@ export interface BillInfo {
   primary_subject: string;
   summary: string;
   summary_short: string;
+  latest_major_action_date: string;
   latest_major_action: string;
 }
 export interface AmendmentInfo {
@@ -44,7 +44,31 @@ export interface AmendmentInfo {
   latest_major_action_date: string;
   latest_major_action: string;
 }
-
+export interface RelatedBillInfo{
+  //first gives the related bill's info, then a list of the related bills
+  congress: string;
+  bill_id: string;
+  bill_slug: string;
+  bill_type: string;
+  number: string;
+  bill_uri: string;
+  url_number: string;
+  title: string;
+  sponsor_title: string;
+  sponsor_id: string;
+  sponsor_name: string;
+  sponsor_state: string;
+  sponsor_party: string;
+  sponsor_uri: string;
+  introduced_date: string;
+  number_of_cosponsors: number;
+  committees: string;
+  latest_major_action_date: string;
+  latest_major_action: string;
+  house_passage_vote: string | null;
+  senate_passage_vote: string | null;
+  related_bills: BillInfo[]; //not exactly BillInfo, but mostly the same
+}
 export interface BillResult {
   num_results: number;
   offset: number;
@@ -68,6 +92,11 @@ export interface AmendmentsData {
   results: AmendmentResult[];
 }
 
+export interface RelatedBillData {
+  num_results: number;
+  offset: number;
+  results: RelatedBillInfo;
+}
 export interface BillProps {
   bill: BillInfo;
 }
