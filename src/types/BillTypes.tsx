@@ -58,7 +58,7 @@ export interface AmendmentResult {
   amendments: AmendmentInfo[];
 }
 
-export interface BillData {
+export interface SearchBillData {
   //whats returned from api call
   results: BillResult[];
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import BillItem from "@/components/bills/BillItem";
 import BillSearchBar from "@/components/bills/BillSearchBar";
-import { BillData } from "@/types/BillTypes";
+import { SearchBillData } from "@/types/BillTypes";
 
 // import { Bill } from '@/components/bills';
 
@@ -18,7 +18,7 @@ import { BillData } from "@/types/BillTypes";
  */
 
 const AllBills = () => {
-  const [data, setData] = useState<BillData | null>(null);
+  const [data, setData] = useState<SearchBillData | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [offset, setOffset] = useState(0); //must be multiple of 20
   useEffect(() => {

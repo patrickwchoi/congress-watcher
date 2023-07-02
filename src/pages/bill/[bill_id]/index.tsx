@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { SpecificBillData, AmendmentsData } from "@/types/BillTypes";
+import { SpecificBillData, AmendmentsData, SearchBillData } from "@/types/BillTypes";
 import BillPageInfo from "@/components/bills/BillPageInfo";
 
 const BillPage = () => {
@@ -8,9 +8,9 @@ const BillPage = () => {
   const { bill_id } = router.query; //derived from the folder name [bill_id].tsx
 
   const [billData, setBillData] = useState<SpecificBillData | null>(null);
-  const [amendmentsData, setAmendmentsData] = useState<AmendmentsData | null>(
-    null
-  );
+  const [amendmentsData, setAmendmentsData] = useState<AmendmentsData | null>(null);
+  const [relatedBillsData, setRelatedBillsData] = useState<SearchBillData | null>(null);
+
   const [billNum, setBillNum] = useState("");
   const [congress, setCongress] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -39,6 +39,13 @@ const BillPage = () => {
       console.log("Received amendments data from server:", amendmentsJson);
       setAmendmentsData(amendmentsJson);
 
+      const relatedBillsRes = await fetch(
+        `/api/bills/relatedBills?congress=${congress}&bill_num=${billNum}`
+      );
+      const relatedBillsJson = await relatedBillsRes.json();
+      console.log("Received related bills data from server:", relatedBillsJson);
+      setRelatedBillsData(relatedBillsJson);
+
       if (billJson.status === "OK") {
         setIsLoading(false);
       }
@@ -53,8 +60,6 @@ const BillPage = () => {
         <BillPageInfo bill={billData.results[0]} />
       ) : (
         <h1>Cannot Find Bill</h1>
-        //small bug where this will show for a split second before data is rendered, even with isLoading.
-        //can be fixed by adding combining state, but wanted to keep it simple for now
       )}
 
       {amendmentsData && amendmentsData.results[0].amendments.length != 0 ? (
@@ -71,6 +76,21 @@ const BillPage = () => {
       ) : (
         <h1>No amendments</h1>
       )}
+
+      {/* {relatedBillsData && relatedBillsData.results.length != 0 ? (
+        <div>
+          <h1>Related Bills</h1>
+          <ul>
+            {relatedBillsData.results.map((bill) => (
+              <li key={bill.bill_id}>
+                <a href={bill.congressdotgov_url}>{bill.title}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : (
+        <h1>No related bills</h1>
+      )} */}
     </div>
   );
 };
