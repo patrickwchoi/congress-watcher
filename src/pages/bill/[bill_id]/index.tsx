@@ -10,6 +10,7 @@ const BillPage = () => {
   const [billData, setBillData] = useState<SpecificBillData | null>(null);
   const [amendmentsData, setAmendmentsData] = useState<AmendmentsData | null>(null);
   const [relatedBillsData, setRelatedBillsData] = useState<RelatedBillData | null>(null);
+  const [cosponsorsData, setCosponsorsData] = useState('')//<RelatedBillData | null>(null);
 
   const [billNum, setBillNum] = useState("");
   const [congress, setCongress] = useState("");
@@ -45,6 +46,14 @@ const BillPage = () => {
       const relatedBillsJson = await relatedBillsRes.json();
       console.log("Received related bills data from server:", relatedBillsJson);
       setRelatedBillsData(relatedBillsJson);
+
+      const cosponsorsRes = await fetch(
+        `/api/bills/billCosponsors?congress=${congress}&bill_num=${billNum}`
+      );
+      const cosponsorsJson = await cosponsorsRes.json();
+      console.log("Received cosponsors data from server:", cosponsorsJson);
+      setCosponsorsData(cosponsorsJson);
+
 
       if (billJson.status === "OK") {
         setIsLoading(false);
@@ -91,6 +100,23 @@ const BillPage = () => {
       ) : (
         <h1>No related bills</h1>
       )}
+
+      {cosponsorsData && cosponsorsData.results[0].cosponsors.length != 0 ? (
+        <div>
+          <h1>Cosponsors</h1>
+          <ul>
+            {cosponsorsData.results[0].cosponsors.map((cosponsor) => (
+              <li key={cosponsor.cosponsor_id}>
+                <a href={cosponsor.cosponsor_uri}>{cosponsor.name}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : (
+        <h1>No cosponsors</h1>
+      )}
+      
+
     </div>
   );
 };
