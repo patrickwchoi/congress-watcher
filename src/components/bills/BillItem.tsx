@@ -9,17 +9,24 @@ import React from "react";
  * @returns {JSX.Element} The Bill component.
  */
 const BillItem: React.FC<BillProps> = ({ bill }) => {
+
   const handleLink = () => {
     window.open(bill.congressdotgov_url, "_blank");
   };
+  const handleBillPage = () => {
+    window.open(`/bill/${bill.bill_id}`, "_blank");
+  };
   return (
     <div className="bill-component flex flex-col m-4 p-2 border-2 border-black">
-      <div className="bill-header flex flex-row justify-between border-b-2 border-gray-500">
+      <a 
+        className="bill-header flex flex-row justify-between border-b-2 border-gray-500"
+        href={`/bill/${bill.bill_id}`}
+      >
         <h1 className="text-1xl font-bold">
           {bill.number} - {bill.title}
         </h1>
         <p className="text-base">{bill.introduced_date}</p>
-      </div>
+      </a>
 
       <div className="bill-content flex flex-col">
         <div className="bill-sponsor flex flex-row gap-x-2">
