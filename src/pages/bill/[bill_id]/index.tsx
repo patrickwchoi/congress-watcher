@@ -104,7 +104,7 @@ const BillPage = () => {
       )}
 
       {/* TODO: make button so it shows max 5 cosponsors unless button is pressed */}
-      {cosponsorsData && cosponsorsData.results[0].cosponsors.length != 0 ?
+      {cosponsorsData && cosponsorsData.results[0].cosponsors ?
         <Cosponsors cosponsors={cosponsorsData.results[0].cosponsors}/>
         : (
           <h1>No cosponsors</h1>
