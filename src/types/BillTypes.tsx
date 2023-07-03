@@ -142,3 +142,6 @@ export interface CosponsorsData {
 export interface BillProps {
   bill: BillInfo;
 }
+export interface CosponsorsProps{
+  cosponsors: CosponsorsInfo[];
+}

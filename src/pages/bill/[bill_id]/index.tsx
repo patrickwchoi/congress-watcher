@@ -2,6 +2,8 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { SpecificBillData, AmendmentsData, RelatedBillData, CosponsorsData } from "@/types/BillTypes";
 import BillPageInfo from "@/components/bills/BillPageInfo";
+import Cosponsors from "@/components/bills/Cosponsors";
+
 
 const BillPage = () => {
   const router = useRouter();
@@ -101,20 +103,13 @@ const BillPage = () => {
         <h1>No related bills</h1>
       )}
 
-      {cosponsorsData && cosponsorsData.results[0].cosponsors.length != 0 ? (
-        <div>
-          <h1>Cosponsors</h1>
-          <ul>
-            {cosponsorsData.results[0].cosponsors.map((cosponsor) => (
-              <li key={cosponsor.cosponsor_id}>
-                <a href={cosponsor.cosponsor_uri}>{cosponsor.name}</a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : (
-        <h1>No cosponsors</h1>
-      )}
+      {/* TODO: make button so it shows max 5 cosponsors unless button is pressed */}
+      {cosponsorsData && cosponsorsData.results[0].cosponsors.length != 0 ?
+        <Cosponsors cosponsors={cosponsorsData.results[0].cosponsors}/>
+        : (
+          <h1>No cosponsors</h1>
+        )} 
+    
 
 
     </div>
