@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { SpecificBillData, AmendmentsData, RelatedBillData } from "@/types/BillTypes";
+import { SpecificBillData, AmendmentsData, RelatedBillData, CosponsorsData } from "@/types/BillTypes";
 import BillPageInfo from "@/components/bills/BillPageInfo";
 
 const BillPage = () => {
@@ -10,7 +10,7 @@ const BillPage = () => {
   const [billData, setBillData] = useState<SpecificBillData | null>(null);
   const [amendmentsData, setAmendmentsData] = useState<AmendmentsData | null>(null);
   const [relatedBillsData, setRelatedBillsData] = useState<RelatedBillData | null>(null);
-  const [cosponsorsData, setCosponsorsData] = useState('')//<RelatedBillData | null>(null);
+  const [cosponsorsData, setCosponsorsData] = useState<CosponsorsData | null>(null);
 
   const [billNum, setBillNum] = useState("");
   const [congress, setCongress] = useState("");
@@ -115,7 +115,7 @@ const BillPage = () => {
       ) : (
         <h1>No cosponsors</h1>
       )}
-      
+
 
     </div>
   );

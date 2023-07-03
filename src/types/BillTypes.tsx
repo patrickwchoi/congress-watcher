@@ -69,6 +69,15 @@ export interface RelatedBillInfo{
   senate_passage_vote: string | null;
   related_bills: BillInfo[]; //not exactly BillInfo, but mostly the same
 }
+export interface CosponsorsInfo {
+  cosponsor_id: string;
+  name: string;
+  cosponsor_title: string;
+  cosponsor_state: string;
+  cosponsor_party: string;
+  cosponsor_uri: string;
+  date: string;
+}
 export interface BillResult {
   num_results: number;
   offset: number;
@@ -80,6 +89,32 @@ export interface AmendmentResult {
   num_results: number;
   offset: number;
   amendments: AmendmentInfo[];
+}
+export interface CosponsorsResult {
+  congress: string;
+  bill: string;
+  url_number: string;
+  title: string;
+  sponsor_title: string;
+  sponsor_id: string;
+  sponsor_name: string;
+  sponsor_state: string;
+  sponsor_party: string;
+  sponsor_uri: string;
+  introduced_date: string;
+  number_of_cosponsors: number;
+  committees: string;
+  latest_major_action_date: string;
+  latest_major_action: string;
+  house_passage_vote: string | null;
+  senate_passage_vote: string | null;
+  cosponsors_by_party: {
+    party: {
+      id: string;
+      cosponsors: string;
+    }
+  }[];
+  cosponsors: CosponsorsInfo[];
 }
 
 export interface SearchBillData {
@@ -97,10 +132,13 @@ export interface RelatedBillData {
   offset: number;
   results: RelatedBillInfo;
 }
-export interface BillProps {
-  bill: BillInfo;
-}
-
 export interface SpecificBillData {
   results: BillInfo[];
+}
+export interface CosponsorsData {
+  results: CosponsorsResult[];
+}
+
+export interface BillProps {
+  bill: BillInfo;
 }
