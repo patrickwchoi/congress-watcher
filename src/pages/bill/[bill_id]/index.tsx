@@ -73,7 +73,7 @@ const BillPage = () => {
         <h1>Cannot Find Bill</h1>
       )}
 
-      {amendmentsData && amendmentsData.results[0].amendments.length != 0 ? (
+      {amendmentsData && amendmentsData.results && amendmentsData.results[0].amendments.length != 0 ? (
         <div>
           <h1>Amendments</h1>
           <ul>
@@ -104,7 +104,7 @@ const BillPage = () => {
       )}
 
       {/* TODO: make button so it shows max 5 cosponsors unless button is pressed */}
-      {cosponsorsData && cosponsorsData.results[0].cosponsors ?
+      {cosponsorsData && cosponsorsData.results && cosponsorsData.results[0].cosponsors ?
         <Cosponsors cosponsors={cosponsorsData.results[0].cosponsors}/>
         : (
           <h1>No cosponsors</h1>

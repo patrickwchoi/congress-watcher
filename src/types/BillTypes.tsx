@@ -190,7 +190,7 @@ export interface RelatedBillData {
   results: RelatedBillInfo;
 }
 export interface SpecificBillData {
-  results: BillInfo[];
+  results: SpecificBillInfo[];
 }
 export interface CosponsorsData {
   results: CosponsorsResult[];
