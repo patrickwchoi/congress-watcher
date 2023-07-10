@@ -3,7 +3,7 @@ import React from "react";
 
 /**
  * Individual Bill Page Component
- * @param props.bill takes in a BillInfo object
+ * @param props.bill takes in a SpecificBillInfo object
  * @returns {JSX.Element} Main portion of our bill/[bill_id] page
  */
 const BillPageInfo: React.FC<SpecificBillProps> = ({ bill }) => {
