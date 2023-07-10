@@ -29,6 +29,63 @@ export interface BillInfo {
   latest_major_action_date: string;
   latest_major_action: string;
 }
+interface SpecificBillInfo {
+  bill_id: string;
+  bill_slug: string;
+  congress: string;
+  bill: string;
+  bill_type: string;
+  number: string;
+  bill_uri: string;
+  title: string;
+  short_title: string;
+  sponsor_title: string;
+  sponsor: string;
+  sponsor_id: string;
+  sponsor_uri: string;
+  sponsor_party: string;
+  sponsor_state: string;
+  gpo_pdf_uri: string | null;
+  congressdotgov_url: string;
+  govtrack_url: string;
+  introduced_date: string;
+  active: boolean;
+  last_vote: string | null;
+  house_passage: string;
+  senate_passage: string | null;
+  enacted: string | null;
+  vetoed: string | null;
+  cosponsors: number;
+  cosponsors_by_party: {
+    [key: string]: number;
+  };
+  withdrawn_cosponsors: number;
+  primary_subject: string;
+  committees: string;
+  committee_codes: string[];
+  subcommittee_codes: string[];
+  latest_major_action_date: string;
+  latest_major_action: string;
+  house_passage_vote: string;
+  senate_passage_vote: string | null;
+  summary: string;
+  summary_short: string;
+  versions: {
+    status: string;
+    title: string;
+    url: string;
+    congressdotgov_url: string;
+  }[];
+  actions: {
+    id: number;
+    chamber: string;
+    action_type: string;
+    datetime: string;
+    description: string;
+  }[];
+  votes: any[];
+}
+
 export interface AmendmentInfo {
   amendment_number: string;
   slug: string;
@@ -141,6 +198,9 @@ export interface CosponsorsData {
 
 export interface BillProps {
   bill: BillInfo;
+}
+export interface SpecificBillProps {
+  bill: SpecificBillInfo;
 }
 export interface CosponsorsProps{
   cosponsors: CosponsorsInfo[];

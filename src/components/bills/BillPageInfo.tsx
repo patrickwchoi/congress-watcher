@@ -1,15 +1,16 @@
-import { BillProps } from "@/types/BillTypes";
+import { SpecificBillProps } from "@/types/BillTypes";
 import React from "react";
 
 /**
  * Individual Bill Page Component
  * @param props.bill takes in a BillInfo object
- * @returns {JSX.Element}
+ * @returns {JSX.Element} Main portion of our bill/[bill_id] page
  */
-const BillPageInfo: React.FC<BillProps> = ({ bill }) => {
+const BillPageInfo: React.FC<SpecificBillProps> = ({ bill }) => {
   const handleLink = () => {
     window.open(bill.congressdotgov_url, "_blank");
   };
+  console.log('sponsor: ', bill.sponsor)
   return (
     <div className="bill-component flex flex-col m-4 p-2 border-2 border-black">
       <div className="bill-header flex flex-row justify-between border-b-2 border-gray-500">
@@ -22,7 +23,7 @@ const BillPageInfo: React.FC<BillProps> = ({ bill }) => {
       <div className="bill-content flex flex-col">
         <div className="bill-sponsor flex flex-row gap-x-2">
           <h3 className="text-1xl">
-            Sponsor: {bill.sponsor_title} {bill.sponsor_name},
+            Sponsor: {bill.sponsor_title} {bill.sponsor},
           </h3>
           <p className="text-base">
             {bill.sponsor_party} - {bill.sponsor_state}
