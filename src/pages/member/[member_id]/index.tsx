@@ -17,17 +17,6 @@ const MemberPage: React.FC<SpecificMemberProps> = ({
     <div>
       <h2>member page</h2>
       <MemberBio memberInfo={memberData.results[0]} portraitUrl={imageUrl} />
-      {/* {MemberData && MemberData.results[0] ? (
-        <div>
-          <p>
-            {MemberData.results[0].first_name}
-            {MemberData.results[0].last_name}
-          </p>
-          <Image src={imageUrl} alt='member image' width={200} height={300}/>
-        </div>
-      ) : (
-        <h2>No member data.</h2>
-      )} */}
     </div>
   );
 };
