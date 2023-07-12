@@ -12,7 +12,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     `https://api.propublica.org/congress/v1/members/${member_id}.json`,
     {
       headers: { "X-API-Key": process.env.PROPUBLICA_API_KEY },
-    }
+    },
   );
 
   const data = await response.json();

@@ -9,7 +9,6 @@ import React from "react";
  * @returns {JSX.Element} The Bill component.
  */
 const BillItem: React.FC<BillProps> = ({ bill }) => {
-
   const handleLink = () => {
     window.open(bill.congressdotgov_url, "_blank");
   };
@@ -18,7 +17,7 @@ const BillItem: React.FC<BillProps> = ({ bill }) => {
   };
   return (
     <div className="bill-component flex flex-col m-4 p-2 border-2 border-black">
-      <a 
+      <a
         className="bill-header flex flex-row justify-between border-b-2 border-gray-500"
         href={`/bill/${bill.bill_id}`}
       >

@@ -101,7 +101,7 @@ export interface AmendmentInfo {
   latest_major_action_date: string;
   latest_major_action: string;
 }
-export interface RelatedBillInfo{
+export interface RelatedBillInfo {
   //first gives the related bill's info, then a list of the related bills
   congress: string;
   bill_id: string;
@@ -169,7 +169,7 @@ export interface CosponsorsResult {
     party: {
       id: string;
       cosponsors: string;
-    }
+    };
   }[];
   cosponsors: CosponsorsInfo[];
 }
@@ -202,6 +202,6 @@ export interface BillProps {
 export interface SpecificBillProps {
   bill: SpecificBillInfo;
 }
-export interface CosponsorsProps{
+export interface CosponsorsProps {
   cosponsors: CosponsorsInfo[];
 }

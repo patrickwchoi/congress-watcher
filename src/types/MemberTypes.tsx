@@ -83,7 +83,7 @@ interface Subcommittee extends Committee {
 export interface SpecificMemberData {
   status: string;
   copyright: string;
-  results: SpecificMemberInfo[]
+  results: SpecificMemberInfo[];
 }
 export interface MembersPictureData {
   batchcomplete: string;

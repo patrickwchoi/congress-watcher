@@ -10,7 +10,7 @@ const BillPageInfo: React.FC<SpecificBillProps> = ({ bill }) => {
   const handleLink = () => {
     window.open(bill.congressdotgov_url, "_blank");
   };
-  console.log('sponsor: ', bill.sponsor)
+  console.log("sponsor: ", bill.sponsor);
   return (
     <div className="bill-component flex flex-col m-4 p-2 border-2 border-black">
       <div className="bill-header flex flex-row justify-between border-b-2 border-gray-500">
