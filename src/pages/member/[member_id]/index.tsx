@@ -25,6 +25,9 @@ const MemberPage:React.FC<SpecificMemberProps> = ({ initialData }) => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { member_id } = context.query; //where is context.query coming from?
   console.log('politicina id: ', member_id)
+  if (!process.env.PROPUBLICA_API_KEY) {
+    throw new Error("PROPUBLICA_API_KEY must be defined");
+  }
   const res = await fetch(
     `https://api.propublica.org/congress/v1/members/${member_id}.json`,
     {
