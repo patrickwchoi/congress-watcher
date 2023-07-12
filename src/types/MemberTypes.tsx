@@ -108,6 +108,6 @@ export interface MembersPictureData {
 }
 
 export interface SpecificMemberProps {
-  MemberData: SpecificMemberData;
+  memberData: SpecificMemberData;
   pictureData: MembersPictureData;
 }
