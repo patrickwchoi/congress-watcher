@@ -14,7 +14,7 @@ const MemberPage: React.FC<SpecificMemberProps> = ({
   const imageUrl = pages[pageId].original.source; // these 3 lines used to grab the url nested inside pictureData
 
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <h2>member page</h2>
       <MemberBio memberInfo={memberData.results[0]} portraitUrl={imageUrl} />
     </div>

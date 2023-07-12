@@ -17,7 +17,7 @@ const MemberBio: React.FC<MemberBioProps> = ({ memberInfo, portraitUrl }) => {
     window.open(memberInfo.facebook_account, "_blank");
   }
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row w-2/3 bg-green-200">
       <Image src={portraitUrl} alt="member image" width={200} height={300} />
       <div className="memberbio-text flex flex-col">
         <div className="flex flex-row">
