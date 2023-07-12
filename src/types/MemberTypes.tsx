@@ -85,6 +85,29 @@ export interface SpecificMemberData {
   copyright: string;
   results: SpecificMemberInfo[]
 }
+export interface MembersPictureData {
+  batchcomplete: string;
+  query: {
+    normalized: {
+      from: string;
+      to: string;
+    }[];
+    pages: {
+      [key: string]: {
+        pageid: number;
+        ns: number;
+        title: string;
+        original: {
+          source: string;
+          width: number;
+          height: number;
+        };
+      };
+    };
+  };
+}
+
 export interface SpecificMemberProps {
   MemberData: SpecificMemberData;
+  pictureData: MembersPictureData;
 }

@@ -1,7 +1,9 @@
 require("dotenv").config();
 import { useState} from "react";
 import type { GetServerSideProps } from 'next'
-import { SpecificMemberProps, SpecificMemberData } from "@/types/MemberTypes"
+import { SpecificMemberProps } from "@/types/MemberTypes"
+import Image from 'next/image'
+import MemberBio from '@/components/members/MemberBio'
 
 const MemberPage:React.FC<SpecificMemberProps> = ({ MemberData, pictureData }) => {
   // const [memberData, setMemberData] = useState<SpecificMemberData|null>(MemberData)
@@ -13,17 +15,19 @@ const MemberPage:React.FC<SpecificMemberProps> = ({ MemberData, pictureData }) =
   return (
     <div>
       <h2>member page</h2>
-      {MemberData && MemberData.results[0] ? (
+      <MemberBio memberInfo={MemberData.results[0]} portraitUrl={imageUrl}/>
+      {/* {MemberData && MemberData.results[0] ? (
         <div>
           <p>
             {MemberData.results[0].first_name}
             {MemberData.results[0].last_name}
           </p>
-          <img src={imageUrl}/>
+          <Image src={imageUrl} alt='member image' width={200} height={300}/>
         </div>
       ) : (
-        <h2>no member data</h2>
-      )}
+        <h2>No member data.</h2>
+      )} */}
+
     </div>
   )
 }
