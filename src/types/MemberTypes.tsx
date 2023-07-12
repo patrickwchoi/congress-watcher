@@ -86,5 +86,5 @@ export interface SpecificMemberData {
   results: SpecificMemberInfo[]
 }
 export interface SpecificMemberProps {
-  initialData: SpecificMemberData;
+  MemberData: SpecificMemberData;
 }

@@ -1,20 +1,26 @@
 require("dotenv").config();
-import { useState, useEffect} from "react";
-import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
+import { useState} from "react";
+import type { GetServerSideProps } from 'next'
 import { SpecificMemberProps, SpecificMemberData } from "@/types/MemberTypes"
 
-const MemberPage:React.FC<SpecificMemberProps> = ({ initialData }) => {
-  const [memberData, setMemberData] = useState<SpecificMemberData|null>(initialData)
+const MemberPage:React.FC<SpecificMemberProps> = ({ MemberData, pictureData }) => {
+  // const [memberData, setMemberData] = useState<SpecificMemberData|null>(MemberData)
 
-  console.log('memberdata: ', memberData)
-
+  const pages = pictureData.query.pages;
+  const pageId = Object.keys(pages)[0];  
+  const imageUrl = pages[pageId].original.source;  // these 3 lines used to grab the url nested inside pictureData
+  
   return (
     <div>
       <h2>member page</h2>
-      {memberData && memberData.results[0] ? (
-        <p>
-          {memberData.results[0].last_name}
-        </p>
+      {MemberData && MemberData.results[0] ? (
+        <div>
+          <p>
+            {MemberData.results[0].first_name}
+            {MemberData.results[0].last_name}
+          </p>
+          <img src={imageUrl}/>
+        </div>
       ) : (
         <h2>no member data</h2>
       )}
@@ -28,18 +34,26 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (!process.env.PROPUBLICA_API_KEY) {
     throw new Error("PROPUBLICA_API_KEY must be defined");
   }
-  const res = await fetch(
+  const MemberRes = await fetch(
     `https://api.propublica.org/congress/v1/members/${member_id}.json`,
     {
       headers: { "X-API-Key": process.env.PROPUBLICA_API_KEY },
     }
     );
+  const MemberData = await MemberRes.json();
+  
+  //fetch using wiki API to get politician's main wiki picture using their fullname
+  const fullname = MemberData.results[0].first_name + '_' + MemberData.results[0].last_name
+  const pictureRes = await fetch(
+    `http://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&piprop=original&titles=${fullname}`
+  );
+  const pictureData = await pictureRes.json();
 
-  const initialData = await res.json();
 
   return {
     props: {
-      initialData,
+      MemberData,
+      pictureData,
     },
   };
 }
