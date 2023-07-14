@@ -26,7 +26,6 @@ export interface SpecificMemberInfo {
   last_updated: string;
   roles: Role[];
 }
-
 interface Role {
   congress: string;
   chamber: string;
@@ -75,9 +74,38 @@ interface Committee {
   begin_date: string;
   end_date: string;
 }
-
 interface Subcommittee extends Committee {
   parent_committee_id: string;
+}
+
+export interface MemberVoteInfo {
+  member_id: string;
+  chamber: string;
+  congress: string;
+  session: string;
+  roll_call: string;
+  vote_uri: string;
+  bill: {
+      bill_id: string;
+      number: string;
+      sponsor_id?: string;
+      bill_uri?: string;
+      title?: string;
+      latest_action?: string;
+  };
+  amendment: Record<string, unknown>;
+  description: string;
+  question: string;
+  result: string;
+  date: string;
+  time: string;
+  total: {
+      yes: number;
+      no: number;
+      present: number;
+      not_voting: number;
+  };
+  position: string;
 }
 
 export interface SpecificMemberData {
@@ -105,6 +133,17 @@ export interface MembersPictureData {
       };
     };
   };
+}
+export interface MemberVoteHistoryData {
+  status: string;
+  copyright: string;
+  results: MemberVoteHistoryResult[];
+}
+export interface MemberVoteHistoryResult {
+  member_id: string;
+  num_results: string;
+  offset: string;
+  votes: MemberVoteInfo[];
 }
 
 export interface SpecificMemberProps {
