@@ -2,7 +2,6 @@ require("dotenv").config();
 import { useState } from "react";
 import type { GetServerSideProps } from "next";
 import { SpecificMemberProps } from "@/types/MemberTypes";
-import Image from "next/image";
 import MemberBio from "@/components/members/MemberBio";
 import MemberVotingHistory from "@/components/members/MemberVotingHistory";
 
