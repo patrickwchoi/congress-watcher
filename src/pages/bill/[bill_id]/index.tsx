@@ -1,11 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import {
-  SpecificBillData,
-  AmendmentsData,
-  RelatedBillData,
-  CosponsorsData,
-} from "@/types/BillTypes";
+import { SpecificBillData, AmendmentsData, RelatedBillData, CosponsorsData } from "@/types/BillTypes";
 import BillPageInfo from "@/components/bills/BillPageInfo";
 import Cosponsors from "@/components/bills/Cosponsors";
 
