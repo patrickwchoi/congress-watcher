@@ -11,6 +11,21 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 
+const tabStyles = {
+  "& .MuiTab-root": {
+    textTransform: "capitalize",
+    color: "grey",
+  },
+  "& .Mui-selected": {
+    opacity: 1,
+    color: "black !important",
+    fontWeight: "bold",
+    borderBottom: "2px solid #000",
+  },
+  "& .MuiTabs-indicator": {
+    backgroundColor: "transparent",
+  },
+};
 
 const MemberPage: React.FC<SpecificMemberProps> = ({ memberData, memberVoteHistoryData, pictureData}) => {
   const [value, setValue] = useState("1"); //tab value
@@ -25,10 +40,14 @@ const MemberPage: React.FC<SpecificMemberProps> = ({ memberData, memberVoteHisto
       <h2>member page</h2>
       <MemberBio memberInfo={memberData.results[0]} portraitUrl={imageUrl} />
       
-      <Box sx={{ width: '100%', typography: 'body1' }}>
+      <Box sx={{ width: '100%', }}>
         <TabContext value={value}>
-          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <TabList onChange={handleChange} aria-label="lab API tabs example">
+          <Box>
+            <TabList 
+              onChange={handleChange} 
+              centered={true} 
+              sx={tabStyles}
+            >
               <Tab label="Voting History" value="1" />
               <Tab label="Item Two" value="2" />
               <Tab label="Item Three" value="3" />
