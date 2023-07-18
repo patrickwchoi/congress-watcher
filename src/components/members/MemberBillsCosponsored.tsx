@@ -1,9 +1,24 @@
+import { useState } from 'react'
 
+/** 
+ * Not sure if I want to use getServerSideProps here, instead of fetching it when I open the page.
+ * Slows down memberId page bc it fetches data that it doesnt need to show yet.
+*/
 
 const MemberBillsCosponsored = ({memberBillsCosponsoredData}) => {
+  const [bills, setBills] = useState(memberBillsCosponsoredData.results[0].bills)
 
-  console.log(memberBillsCosponsoredData.results[0].bills[0]);
-  const bills = memberBillsCosponsoredData.results[0].bills
+  let offset = 0;
+  const member_id = memberBillsCosponsoredData.results[0].id;
+  const handleClick = async () => {
+    offset += 20;
+    const res = await fetch(
+      `/api/members/getBillsCosponsored?member_id=${member_id}&offset=${offset}`
+    );
+    const newBillsData = await res.json();
+    setBills(newBillsData.results[0].bills);
+  };
+
   return(
     <div>
       {bills && bills.map((bill)=> (
@@ -11,6 +26,7 @@ const MemberBillsCosponsored = ({memberBillsCosponsoredData}) => {
           <h3>{bill.title}</h3>
         </div>
       ))}
+      <button onClick={handleClick}> Next </button>
     </div>
   )
 }

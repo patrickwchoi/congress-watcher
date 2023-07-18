@@ -16,7 +16,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   );
 
   const data = await response.json();
-
+  console.log(data)
   res.status(200).json(data);
 };
 
