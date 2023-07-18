@@ -37,7 +37,7 @@ const MemberPage: React.FC<SpecificMemberProps> = ({ memberData, memberVoteHisto
   const pageId = Object.keys(pages)[0];
   const imageUrl = pages[pageId].original?.source; // these 3 lines used to grab the url nested inside pictureData
   return (
-    <div className="flex flex-col justify-center items-center w-2/3 mx-auto">
+    <div className="flex flex-col justify-center items-center w-4/5 mx-auto">
       <h2>member page</h2>
       <MemberBio memberInfo={memberData.results[0]} portraitUrl={imageUrl} />
       
@@ -50,7 +50,7 @@ const MemberPage: React.FC<SpecificMemberProps> = ({ memberData, memberVoteHisto
               sx={tabStyles}
             >
               <Tab label="Voting History" value="1" />
-              <Tab label="Item Two" value="2" />
+              <Tab label="Bills Cosponsored" value="2" />
               <Tab label="Item Three" value="3" />
             </TabList>
           </Box>
