@@ -4,6 +4,7 @@ import type { GetServerSideProps } from "next";
 import { SpecificMemberProps } from "@/types/MemberTypes";
 import MemberBio from "@/components/members/MemberBio";
 import MemberVotingHistory from "@/components/members/MemberVotingHistory";
+import MemberBillsCosponsored from "@/components/members/MemberBillsCosponsored";
 
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
@@ -27,7 +28,7 @@ const tabStyles = {
   },
 };
 
-const MemberPage: React.FC<SpecificMemberProps> = ({ memberData, memberVoteHistoryData, pictureData}) => {
+const MemberPage: React.FC<SpecificMemberProps> = ({ memberData, memberVoteHistoryData, pictureData, memberBillsCosponsoredData}) => {
   const [value, setValue] = useState("1"); //tab value
   const handleChange = (_event: any, newValue: string) => {
     setValue(newValue);
@@ -56,7 +57,9 @@ const MemberPage: React.FC<SpecificMemberProps> = ({ memberData, memberVoteHisto
           <TabPanel value="1">
             <MemberVotingHistory memberVoteHistoryData={memberVoteHistoryData} />
           </TabPanel>
-          <TabPanel value="2">Item Two</TabPanel>
+          <TabPanel value="2">
+            <MemberBillsCosponsored memberBillsCosponsoredData={memberBillsCosponsoredData}/>
+          </TabPanel>
           <TabPanel value="3">Item Three</TabPanel>
         </TabContext>
       </Box>
@@ -79,14 +82,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   );
   const memberData = await memberRes.json();
 
-  const memberVoteHistoryRes = await fetch(
-    `https://api.propublica.org/congress/v1/members/${member_id}/votes.json`,
+  const memberBillsCosponsoredRes = await fetch(
+    `https://api.propublica.org/congress/v1/members/${member_id}/bills/cosponsored.json`,
     {
       headers: { "X-API-Key": process.env.PROPUBLICA_API_KEY },
     }
   );
-  const memberVoteHistoryData = await memberVoteHistoryRes.json()
-  console.log(memberVoteHistoryData)
+  const memberBillsCosponsoredData = await memberBillsCosponsoredRes.json()
 
   //fetch using wiki API to get politician's main wiki picture using their fullname
   const firstname = memberData.results[0].first_name
@@ -102,7 +104,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   );
   const pictureData = await pictureRes.json();
 
-
+  const memberVoteHistoryRes = await fetch(
+    `https://api.propublica.org/congress/v1/members/${member_id}/votes.json`,
+    {
+      headers: { "X-API-Key": process.env.PROPUBLICA_API_KEY },
+    }
+  );
+  const memberVoteHistoryData = await memberVoteHistoryRes.json()
 
 
   return {
@@ -110,6 +118,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       memberData,
       memberVoteHistoryData,
       pictureData,
+      memberBillsCosponsoredData,
 
     },
   };
