@@ -107,6 +107,39 @@ export interface MemberVoteInfo {
   };
   position: string;
 }
+export interface MemberCosponsoredBillInfo{
+  congress: string;
+  bill_id: string;
+  bill_type: string;
+  number: string;
+  bill_uri: string;
+  title: string;
+  short_title: string;
+  sponsor_title: string;
+  sponsor_id: string;
+  sponsor_name: string;
+  sponsor_state: string;
+  sponsor_party: string;
+  sponsor_uri: string;
+  gpo_pdf_uri: string | null;
+  congressdotgov_url: string;
+  govtrack_url: string;
+  introduced_date: string;
+  active: boolean;
+  last_vote: string | null;
+  house_passage: string | null;
+  senate_passage: string | null;
+  enacted: string | null;
+  vetoed: string | null;
+  cosponsors: number;
+  cosponsors_by_party: { [party: string]: number };
+  committees: string;
+  primary_subject: string;
+  summary: string;
+  summary_short: string;
+  latest_major_action_date: string;
+  latest_major_action: string;
+}
 
 export interface SpecificMemberData {
   status: string;
@@ -139,15 +172,28 @@ export interface MemberVoteHistoryData {
   copyright: string;
   results: MemberVoteHistoryResult[];
 }
+export interface MemberBillsCosponsoredData{
+  status: string;
+  copyright: string;
+  results: MemberBillsCosponsoredResult[];
+}
 export interface MemberVoteHistoryResult {
   member_id: string;
   num_results: string;
   offset: string;
   votes: MemberVoteInfo[];
 }
-
+export interface MemberBillsCosponsoredResult {
+  id: string;
+  member_uri: string;
+  name: string;
+  num_results: number;
+  offset: number;
+  bills: MemberCosponsoredBillInfo[];
+}
 export interface SpecificMemberProps {
   memberData: SpecificMemberData;
   pictureData: MembersPictureData;
   memberVoteHistoryData: MemberVoteHistoryData;
+  memberBillsCosponsoredData: MemberBillsCosponsoredData;
 }

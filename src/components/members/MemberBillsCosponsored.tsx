@@ -1,11 +1,13 @@
-import { useState } from 'react'
-
+import React, { useState } from 'react'
+import { MemberBillsCosponsoredData } from '@/types/MemberTypes'
 /** 
  * Not sure if I want to use getServerSideProps here, instead of fetching it when I open the page.
  * Slows down memberId page bc it fetches data that it doesnt need to show yet.
 */
-
-const MemberBillsCosponsored = ({memberBillsCosponsoredData}) => {
+interface MemberBillProps{
+  memberBillsCosponsoredData: MemberBillsCosponsoredData;
+}
+const MemberBillsCosponsored: React.FC<MemberBillProps> = ({memberBillsCosponsoredData}) => {
   const [bills, setBills] = useState(memberBillsCosponsoredData.results[0].bills)
 
   let offset = 0;
