@@ -5,6 +5,7 @@
  - bills sponsored:
  -add tabs to switch between voting history and bills sponsored
 - format, then css
+
 - add lookup politicians feature somewhere
 - add lookup all politicians and politicians by state somewhere
 
