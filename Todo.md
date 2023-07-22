@@ -1,4 +1,9 @@
 ## Politicians Branch:
+TODO:
+ - add type to member bills sponsored
+ - make the bills sponsored page the first page, which means i gotta fix the way i fetch data
+ - add a back button to all my components with offsets
+
 
  - add bills sponsored:
    - i wanna make this the first default tab open for member page
