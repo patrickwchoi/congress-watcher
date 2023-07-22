@@ -1,8 +1,9 @@
 ## Politicians Branch:
 TODO:
- - add type to member bills sponsored
- - make the bills sponsored page the first page, which means i gotta fix the way i fetch data
- - add a back button to all my components with offsets
+ - [x] add type to member bills sponsored
+ - [ ] export the billitem component in cosponsored bills and sponsored bills
+ - [ ] make the bills sponsored page the first page, which means i gotta fix the way i fetch data
+ - [ ] add a back button to all my components with offsets
 
 
  - add bills sponsored:
