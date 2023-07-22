@@ -62,7 +62,6 @@ const MemberPage: React.FC<SpecificMemberProps> = ({ member_id, memberData, memb
             <MemberBillsCosponsored memberBillsCosponsoredData={memberBillsCosponsoredData}/>
           </TabPanel>
           <TabPanel value="3">
-            Bills Sponsored
             <MemberBillsSponsored member_id={member_id}/>
           </TabPanel>
         </TabContext>

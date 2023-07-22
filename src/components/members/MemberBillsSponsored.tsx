@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { MemberBillsCosponsoredData } from '@/types/MemberTypes';
 
+/**
+ * Fetches data after it is loaded
+ */
 const MemberBillsSponsored = ({ member_id }) => {
   const [data, setData] = useState(null);
   const [offset, setOffset] = useState(0);
   const [bills, setBills] = useState([]);
-
-
 
   const fetchData = async (offset: number) => {
     try {
@@ -61,7 +62,9 @@ const MemberBillsSponsored = ({ member_id }) => {
             <div className="bill-summary">
               <p>{bill.summary}</p>
             </div>
-            <button onClick={() => handleOpenLink(bill.congressdotgov_url)}>View on Congres.gov</button>
+            <a href={bill.congressdotgov_url} target="_blank" rel="noopener noreferrer">
+              View on Congres.gov
+            </a>
           </div>
         </div>
       ))}
