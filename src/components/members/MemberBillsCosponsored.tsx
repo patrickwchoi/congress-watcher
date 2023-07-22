@@ -1,19 +1,37 @@
-import React, { useState } from 'react'
-import { MemberBillsCosponsoredData } from '@/types/MemberTypes'
+import React, { useState, useEffect } from 'react'
+import { MemberBillsCosponsoredData, MemberCosponsoredBillInfo } from '@/types/MemberTypes'
 /** 
  * Not sure if I want to use getServerSideProps here, instead of fetching it when I open the page.
  * Slows down member_id page bc it fetches data that it doesnt need to show yet.
 */
 interface MemberBillProps{
-  memberBillsCosponsoredData: MemberBillsCosponsoredData;
+  member_id: number;
 }
-const MemberBillsCosponsored: React.FC<MemberBillProps> = ({memberBillsCosponsoredData}) => {
-  const [bills, setBills] = useState(memberBillsCosponsoredData.results[0].bills)
+const MemberBillsCosponsored: React.FC<MemberBillProps> = ({member_id}) => {
+  const [data, setData] = useState<MemberBillsCosponsoredData|null>(null);
+  const [offset, setOffset] = useState(0);
+  const [bills, setBills] = useState<MemberCosponsoredBillInfo[]|[]>([]);
 
-  let offset = 0;
-  const member_id = memberBillsCosponsoredData.results[0].id;
+  const fetchData = async (offset: number) => {
+    try {
+      const res = await fetch(
+        `/api/members/getBillsCosponsored?member_id=${member_id}&offset=${offset}`
+      );
+      const json = await res.json();
+      setData(json);
+      console.log(data);
+      setBills(json.results[0].bills);
+    } catch (error) {
+      console.error("Error fetching the data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(offset);
+  }, [offset]);
+
   const handleClick = async () => {
-    offset += 20;
+    setOffset(offset+20);
     const res = await fetch(
       `/api/members/getBillsCosponsored?member_id=${member_id}&offset=${offset}`
     );
@@ -29,6 +47,9 @@ const MemberBillsCosponsored: React.FC<MemberBillProps> = ({memberBillsCosponsor
     window.open(`/member/${sponsor_id}`, "_blank");
   }
 
+  if (!data) {
+    return <h2>Fetching data...</h2>;
+  }
   return(
     <div>
       {bills && bills.map((bill)=> (

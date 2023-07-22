@@ -1,6 +1,7 @@
 ## Politicians Branch:
 
  - add bills sponsored:
+   - i wanna make this the first default tab open for member page
 - add lookup politicians feature somewhere
 - add lookup all politicians and politicians by state somewhere
 

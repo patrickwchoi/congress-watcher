@@ -29,7 +29,7 @@ const tabStyles = {
   },
 };
 
-const MemberPage: React.FC<SpecificMemberProps> = ({ member_id, memberData, memberVoteHistoryData, pictureData, memberBillsCosponsoredData}) => {
+const MemberPage: React.FC<SpecificMemberProps> = ({ member_id, memberData, memberVoteHistoryData, pictureData}) => {
   const [value, setValue] = useState("1"); //tab value
   const handleChange = (_event: any, newValue: string) => {
     setValue(newValue);
@@ -59,7 +59,7 @@ const MemberPage: React.FC<SpecificMemberProps> = ({ member_id, memberData, memb
             <MemberVotingHistory memberVoteHistoryData={memberVoteHistoryData} />
           </TabPanel>
           <TabPanel value="2">
-            <MemberBillsCosponsored memberBillsCosponsoredData={memberBillsCosponsoredData}/>
+            <MemberBillsCosponsored member_id={member_id}/>
           </TabPanel>
           <TabPanel value="3">
             <MemberBillsSponsored member_id={member_id}/>
@@ -85,13 +85,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   );
   const memberData = await memberRes.json();
 
-  const memberBillsCosponsoredRes = await fetch(
-    `https://api.propublica.org/congress/v1/members/${member_id}/bills/cosponsored.json`,
-    {
-      headers: { "X-API-Key": process.env.PROPUBLICA_API_KEY },
-    }
-  );
-  const memberBillsCosponsoredData = await memberBillsCosponsoredRes.json()
+  // const memberBillsCosponsoredRes = await fetch(
+  //   `https://api.propublica.org/congress/v1/members/${member_id}/bills/cosponsored.json`,
+  //   {
+  //     headers: { "X-API-Key": process.env.PROPUBLICA_API_KEY },
+  //   }
+  // );
+  // const memberBillsCosponsoredData = await memberBillsCosponsoredRes.json()
 
   //fetch using wiki API to get politician's main wiki picture using their fullname
   const firstname = memberData.results[0].first_name
@@ -122,7 +122,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       memberData,
       memberVoteHistoryData,
       pictureData,
-      memberBillsCosponsoredData,
 
     },
   };

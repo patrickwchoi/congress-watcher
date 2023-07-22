@@ -51,7 +51,7 @@ const MemberBillsSponsored = ({ member_id }) => {
             <p className="text-base">Introduced {bill.introduced_date}</p>
           </a>
           <div className="bill-content flex flex-col">
-            <a className="bill-sponsor flex flex-row gap-x-2 hover:cursor-pointer" href={`./${bill.sponsor_id}`} target="_blank">
+            <a className="bill-sponsor flex flex-row gap-x-2 hover:cursor-pointer" href={`./${bill.sponsor_id}`}>
               <h3 className="text-1xl">Sponsor: {bill.sponsor_title} {bill.sponsor_name},</h3>
               <p className="text-base">{bill.sponsor_party} - {bill.sponsor_state}</p>
             </a>
