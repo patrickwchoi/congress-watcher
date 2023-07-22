@@ -192,6 +192,7 @@ export interface MemberBillsCosponsoredResult {
   bills: MemberCosponsoredBillInfo[];
 }
 export interface SpecificMemberProps {
+  member_id: number;
   memberData: SpecificMemberData;
   pictureData: MembersPictureData;
   memberVoteHistoryData: MemberVoteHistoryData;

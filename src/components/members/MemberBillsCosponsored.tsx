@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { MemberBillsCosponsoredData } from '@/types/MemberTypes'
 /** 
  * Not sure if I want to use getServerSideProps here, instead of fetching it when I open the page.
- * Slows down memberId page bc it fetches data that it doesnt need to show yet.
+ * Slows down member_id page bc it fetches data that it doesnt need to show yet.
 */
 interface MemberBillProps{
   memberBillsCosponsoredData: MemberBillsCosponsoredData;

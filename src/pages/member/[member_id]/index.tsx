@@ -5,6 +5,7 @@ import { SpecificMemberProps } from "@/types/MemberTypes";
 import MemberBio from "@/components/members/MemberBio";
 import MemberVotingHistory from "@/components/members/MemberVotingHistory";
 import MemberBillsCosponsored from "@/components/members/MemberBillsCosponsored";
+import MemberBillsSponsored from "@/components/members/MemberBillsSponsored"
 
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
@@ -28,7 +29,7 @@ const tabStyles = {
   },
 };
 
-const MemberPage: React.FC<SpecificMemberProps> = ({ memberData, memberVoteHistoryData, pictureData, memberBillsCosponsoredData}) => {
+const MemberPage: React.FC<SpecificMemberProps> = ({ member_id, memberData, memberVoteHistoryData, pictureData, memberBillsCosponsoredData}) => {
   const [value, setValue] = useState("1"); //tab value
   const handleChange = (_event: any, newValue: string) => {
     setValue(newValue);
@@ -51,7 +52,7 @@ const MemberPage: React.FC<SpecificMemberProps> = ({ memberData, memberVoteHisto
             >
               <Tab label="Voting History" value="1" />
               <Tab label="Bills Cosponsored" value="2" />
-              <Tab label="Item Three" value="3" />
+              <Tab label="Bills Sponsored" value="3" />
             </TabList>
           </Box>
           <TabPanel value="1">
@@ -60,7 +61,10 @@ const MemberPage: React.FC<SpecificMemberProps> = ({ memberData, memberVoteHisto
           <TabPanel value="2">
             <MemberBillsCosponsored memberBillsCosponsoredData={memberBillsCosponsoredData}/>
           </TabPanel>
-          <TabPanel value="3">Item Three</TabPanel>
+          <TabPanel value="3">
+            Bills Sponsored
+            <MemberBillsSponsored member_id={member_id}/>
+          </TabPanel>
         </TabContext>
       </Box>
 
@@ -115,6 +119,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   return {
     props: {
+      member_id,
       memberData,
       memberVoteHistoryData,
       pictureData,
