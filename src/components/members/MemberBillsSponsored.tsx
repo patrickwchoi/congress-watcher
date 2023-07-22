@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { MemberBillsCosponsoredData } from '@/types/MemberTypes';
+import { MemberBillsSponsoredData, MemberCosponsoredBillInfo } from '@/types/MemberTypes';
 
 /**
  * Fetches data after it is loaded
  */
-const MemberBillsSponsored = ({ member_id }) => {
-  const [data, setData] = useState(null);
+interface MemberBillsSponsoredProps {
+  member_id: number;
+}
+const MemberBillsSponsored: React.FC<MemberBillsSponsoredProps> = ({ member_id }) => {
+  const [data, setData] = useState<MemberBillsSponsoredData | null>(null);
   const [offset, setOffset] = useState(0);
-  const [bills, setBills] = useState([]);
+  const [bills, setBills] = useState<MemberCosponsoredBillInfo[] | []>([]);
 
   const fetchData = async (offset: number) => {
     try {
@@ -30,12 +33,8 @@ const MemberBillsSponsored = ({ member_id }) => {
     setOffset(prevOffset => prevOffset + 20);
   };
 
-  const handleOpenLink = (url) => {
+  const handleOpenLink = (url: string) => {
     window.open(url, "_blank");
-  };
-
-  const handleMemberPage = (sponsorId) => {
-    window.open(`/member/${sponsorId}`, "_blank");
   };
 
   if (!data) {
