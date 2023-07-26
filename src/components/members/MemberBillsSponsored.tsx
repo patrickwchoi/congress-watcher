@@ -5,30 +5,28 @@ import MemberBillItem from '@/components/members/MemberBillItem'
  * Fetches data after it is loaded
  */
 interface MemberBillsSponsoredProps {
-  member_id: number;
+  memberBillsSponsoredData: MemberBillsSponsoredData;
 }
-const MemberBillsSponsored: React.FC<MemberBillsSponsoredProps> = ({ member_id }) => {
-  const [data, setData] = useState<MemberBillsSponsoredData | null>(null);
+const MemberBillsSponsored: React.FC<MemberBillsSponsoredProps> = ({ memberBillsSponsoredData }) => {
+  const [data, setData] = useState<MemberBillsSponsoredData | null>(memberBillsSponsoredData);
   const [offset, setOffset] = useState(0);
-  const [bills, setBills] = useState<MemberCosponsoredBillInfo[] | []>([]);
+  const [bills, setBills] = useState<MemberCosponsoredBillInfo[] | []>(memberBillsSponsoredData.results[0].bills);
+  const member_id = memberBillsSponsoredData.results[0].id;
 
   const fetchData = async (offset: number) => {
     try {
       const res = await fetch(`/api/members/getBillsByMember?member_id=${member_id}&type=introduced&offset=${offset}`);
       const json = await res.json();
       setData(json);
-      console.log(data);
       setBills(json.results[0].bills);
     } catch (error) {
       console.error("Error fetching the data:", error);
     }
   };
 
-  useEffect(() => {
-    console.log('hello')
-    fetchData(offset);
-    console.log(bills)
-  }, [offset]);
+  // useEffect(() => {
+  //   fetchData(offset);
+  // }, [offset]);
 
   // Handlers
   const handleClick = () => {

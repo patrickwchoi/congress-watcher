@@ -29,7 +29,7 @@ const tabStyles = {
   },
 };
 
-const MemberPage: React.FC<SpecificMemberProps> = ({ member_id, memberData, memberVoteHistoryData, pictureData}) => {
+const MemberPage: React.FC<SpecificMemberProps> = ({ member_id, memberData, memberVoteHistoryData, pictureData, memberBillsSponsoredData}) => {
   const [value, setValue] = useState("1"); //tab value
   const handleChange = (_event: any, newValue: string) => {
     setValue(newValue);
@@ -62,7 +62,7 @@ const MemberPage: React.FC<SpecificMemberProps> = ({ member_id, memberData, memb
             <MemberBillsCosponsored member_id={member_id}/>
           </TabPanel>
           <TabPanel value="3">
-            <MemberBillsSponsored member_id={member_id}/>
+            <MemberBillsSponsored memberBillsSponsoredData={memberBillsSponsoredData}/>
           </TabPanel>
         </TabContext>
       </Box>
@@ -93,6 +93,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   // );
   // const memberBillsCosponsoredData = await memberBillsCosponsoredRes.json()
 
+  const memberBillsSponsoredRes = await fetch(
+    `https://api.propublica.org/congress/v1/members/${member_id}/bills/introduced.json`,
+    {
+      headers: { "X-API-Key": process.env.PROPUBLICA_API_KEY },
+    }
+  );
+  const memberBillsSponsoredData = await memberBillsSponsoredRes.json()
+
   //fetch using wiki API to get politician's main wiki picture using their fullname
   const firstname = memberData.results[0].first_name
   const lastname = memberData.results[0].last_name
@@ -122,7 +130,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       memberData,
       memberVoteHistoryData,
       pictureData,
-
+      memberBillsSponsoredData,
     },
   };
 };

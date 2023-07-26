@@ -212,4 +212,6 @@ export interface SpecificMemberProps {
   memberData: SpecificMemberData;
   pictureData: MembersPictureData;
   memberVoteHistoryData: MemberVoteHistoryData;
+  memberBillsSponsoredData: MemberBillsSponsoredData;
+  
 }

@@ -67,6 +67,8 @@ const MemberBillsCosponsored: React.FC<MemberBillProps> = ({member_id}) => {
       {bills && bills.map((bill)=> (
         <MemberBillItem key={bill.bill_id} bill={bill}/>
       ))}
+      
+      <p>Viewing results {offset} - {offset+bills.length}</p>
       {(offset>0) && (
         <button onClick={handleBack}>Back</button>
       )}
