@@ -25,13 +25,18 @@ const MemberBillsSponsored: React.FC<MemberBillsSponsoredProps> = ({ member_id }
   };
 
   useEffect(() => {
+    console.log('hello')
     fetchData(offset);
+    console.log(bills)
   }, [offset]);
 
   // Handlers
   const handleClick = () => {
-    setOffset(prevOffset => prevOffset + 20);
+    setOffset(offset + 20);
   };
+  const handleBack = () => {
+    setOffset(offset-20)
+  }
 
   const handleOpenLink = (url: string) => {
     window.open(url, "_blank");
@@ -46,6 +51,9 @@ const MemberBillsSponsored: React.FC<MemberBillsSponsoredProps> = ({ member_id }
       {bills.map((bill) => (
         <MemberBillItem key={bill.bill_id} bill={bill}/>
       ))}
+      {(offset>0) && (
+        <button onClick={handleBack}>Back</button>
+      )}
       <button onClick={handleClick}>Next</button>
     </div>
   );

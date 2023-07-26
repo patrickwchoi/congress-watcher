@@ -1,13 +1,11 @@
 ## Politicians Branch:
 TODO:
  - [x] add type to member bills sponsored
- - [ ] export the billitem component in cosponsored bills and sponsored bills
+ - [x] export the billitem component in cosponsored bills and sponsored bills
  - [ ] make the bills sponsored page the first page, which means i gotta fix the way i fetch data
  - [ ] add a back button to all my components with offsets
 
 
- - add bills sponsored:
-   - i wanna make this the first default tab open for member page
 - add lookup politicians feature somewhere
 - add lookup all politicians and politicians by state somewhere
 

@@ -30,15 +30,25 @@ const MemberBillsCosponsored: React.FC<MemberBillProps> = ({member_id}) => {
 
   useEffect(() => {
     fetchData(offset);
-  }, [offset]);
+  }, []);
 
-  const handleClick = async () => {
-    setOffset(offset+20);
+  const handleNext = async () => {
+    const newOffset = offset + 20;
     const res = await fetch(
-      `/api/members/getBillsCosponsored?member_id=${member_id}&offset=${offset}`
-    );
-    const newBillsData = await res.json();
-    setBills(newBillsData.results[0].bills);
+      `/api/members/getBillsCosponsored?member_id=${member_id}&offset=${newOffset}`
+      );
+      const newBillsData = await res.json();
+      setBills(newBillsData.results[0].bills);
+      setOffset(newOffset);
+  };
+  const handleBack = async () => {
+    const newOffset = offset - 20;
+    const res = await fetch(
+      `/api/members/getBillsCosponsored?member_id=${member_id}&offset=${newOffset}`
+      );
+      const newBillsData = await res.json();
+      setBills(newBillsData.results[0].bills);
+      setOffset(newOffset);
   };
 
   const handleOpenLink = (congressdotgov_url: string) => {
@@ -57,7 +67,10 @@ const MemberBillsCosponsored: React.FC<MemberBillProps> = ({member_id}) => {
       {bills && bills.map((bill)=> (
         <MemberBillItem key={bill.bill_id} bill={bill}/>
       ))}
-      <button onClick={handleClick}> Next </button>
+      {(offset>0) && (
+        <button onClick={handleBack}>Back</button>
+      )}
+      <button onClick={handleNext}> Next </button>
     </div>
   )
 }
