@@ -107,6 +107,9 @@ export interface MemberVoteInfo {
   };
   position: string;
 }
+/**
+ * Also the Member Sponsored Bill Info
+ */
 export interface MemberCosponsoredBillInfo{
   congress: string;
   bill_id: string;
@@ -177,6 +180,11 @@ export interface MemberBillsCosponsoredData{
   copyright: string;
   results: MemberBillsCosponsoredResult[];
 }
+export interface MemberBillsSponsoredData {
+  status: string;
+  copyright: string;
+  results: MemberBillResult[];
+}
 export interface MemberVoteHistoryResult {
   member_id: string;
   num_results: string;
@@ -191,9 +199,20 @@ export interface MemberBillsCosponsoredResult {
   offset: number;
   bills: MemberCosponsoredBillInfo[];
 }
-export interface SpecificMemberProps {
+export interface MemberBillResult{
+  id: string;
+  member_uri: string;
+  name: string;
+  num_results: number;
+  offset: number;
+  bills: MemberCosponsoredBillInfo[]; //same as the cosponsored bill infos
+}
+
+export interface SpecificMemberProps { //what's fetched as you enter the member page
+  member_id: number;
   memberData: SpecificMemberData;
   pictureData: MembersPictureData;
-  memberVoteHistoryData: MemberVoteHistoryData;
-  memberBillsCosponsoredData: MemberBillsCosponsoredData;
+  // memberVoteHistoryData: MemberVoteHistoryData;
+  memberBillsSponsoredData: MemberBillsSponsoredData;
+  
 }

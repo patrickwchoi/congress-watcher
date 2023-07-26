@@ -7,4 +7,10 @@
     @apply text-2xl font-bold;
   }
 
+  a:hover {
+    @apply underline underline-offset-2 text-blue-700;
+  }
+  a:visited {
+    @apply text-purple-600;
+  }
 }

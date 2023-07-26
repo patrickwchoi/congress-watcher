@@ -1,15 +1,18 @@
 ## Politicians Branch:
-- add content, more api calls to specific member page
- - voting history:
-  - fetch first 20 inside getServerProps, then in my component, fetch the rest using useEffect and next's fetch, like the old way.
- - bills sponsored:
- -add tabs to switch between voting history and bills sponsored
-- format, then css
+TODO:
+ - [x] add type to member bills sponsored
+ - [x] export the billitem component in cosponsored bills and sponsored bills
+ - [x] make the bills sponsored page the first page, which means i gotta fix the way i fetch data
+ - [x] add a back button to all my components with offsets
+ - [x] remove next button when no more bills left
+
+
 - add lookup politicians feature somewhere
 - add lookup all politicians and politicians by state somewhere
 
 ## Bills Branch:
 - refactor api calls to use getServerSideProps
+- add/fix content and how/how_many is displayed
 - css
 
 

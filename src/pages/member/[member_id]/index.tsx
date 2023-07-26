@@ -5,6 +5,7 @@ import { SpecificMemberProps } from "@/types/MemberTypes";
 import MemberBio from "@/components/members/MemberBio";
 import MemberVotingHistory from "@/components/members/MemberVotingHistory";
 import MemberBillsCosponsored from "@/components/members/MemberBillsCosponsored";
+import MemberBillsSponsored from "@/components/members/MemberBillsSponsored"
 
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
@@ -28,7 +29,7 @@ const tabStyles = {
   },
 };
 
-const MemberPage: React.FC<SpecificMemberProps> = ({ memberData, memberVoteHistoryData, pictureData, memberBillsCosponsoredData}) => {
+const MemberPage: React.FC<SpecificMemberProps> = ({ member_id, memberData, pictureData, memberBillsSponsoredData}) => {
   const [value, setValue] = useState("1"); //tab value
   const handleChange = (_event: any, newValue: string) => {
     setValue(newValue);
@@ -49,22 +50,22 @@ const MemberPage: React.FC<SpecificMemberProps> = ({ memberData, memberVoteHisto
               centered={true} 
               sx={tabStyles}
             >
-              <Tab label="Voting History" value="1" />
+              <Tab label="Bills Sponsored" value="1" />
               <Tab label="Bills Cosponsored" value="2" />
-              <Tab label="Item Three" value="3" />
+              <Tab label="Voting History" value="3" />
             </TabList>
           </Box>
           <TabPanel value="1">
-            <MemberVotingHistory memberVoteHistoryData={memberVoteHistoryData} />
+            <MemberBillsSponsored memberBillsSponsoredData={memberBillsSponsoredData}/>
           </TabPanel>
           <TabPanel value="2">
-            <MemberBillsCosponsored memberBillsCosponsoredData={memberBillsCosponsoredData}/>
+            <MemberBillsCosponsored member_id={member_id}/>
           </TabPanel>
-          <TabPanel value="3">Item Three</TabPanel>
+          <TabPanel value="3">
+            <MemberVotingHistory member_id={member_id} />
+          </TabPanel>
         </TabContext>
       </Box>
-
-      
     </div>
   );
 };
@@ -82,13 +83,21 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   );
   const memberData = await memberRes.json();
 
-  const memberBillsCosponsoredRes = await fetch(
-    `https://api.propublica.org/congress/v1/members/${member_id}/bills/cosponsored.json`,
+  // const memberBillsCosponsoredRes = await fetch(
+  //   `https://api.propublica.org/congress/v1/members/${member_id}/bills/cosponsored.json`,
+  //   {
+  //     headers: { "X-API-Key": process.env.PROPUBLICA_API_KEY },
+  //   }
+  // );
+  // const memberBillsCosponsoredData = await memberBillsCosponsoredRes.json()
+
+  const memberBillsSponsoredRes = await fetch(
+    `https://api.propublica.org/congress/v1/members/${member_id}/bills/introduced.json`,
     {
       headers: { "X-API-Key": process.env.PROPUBLICA_API_KEY },
     }
   );
-  const memberBillsCosponsoredData = await memberBillsCosponsoredRes.json()
+  const memberBillsSponsoredData = await memberBillsSponsoredRes.json()
 
   //fetch using wiki API to get politician's main wiki picture using their fullname
   const firstname = memberData.results[0].first_name
@@ -104,22 +113,22 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   );
   const pictureData = await pictureRes.json();
 
-  const memberVoteHistoryRes = await fetch(
-    `https://api.propublica.org/congress/v1/members/${member_id}/votes.json`,
-    {
-      headers: { "X-API-Key": process.env.PROPUBLICA_API_KEY },
-    }
-  );
-  const memberVoteHistoryData = await memberVoteHistoryRes.json()
+  // const memberVoteHistoryRes = await fetch(
+  //   `https://api.propublica.org/congress/v1/members/${member_id}/votes.json`,
+  //   {
+  //     headers: { "X-API-Key": process.env.PROPUBLICA_API_KEY },
+  //   }
+  // );
+  // const memberVoteHistoryData = await memberVoteHistoryRes.json()
 
 
   return {
     props: {
+      member_id,
       memberData,
-      memberVoteHistoryData,
+      // memberVoteHistoryData,
       pictureData,
-      memberBillsCosponsoredData,
-
+      memberBillsSponsoredData,
     },
   };
 };
