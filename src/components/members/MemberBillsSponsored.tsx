@@ -12,29 +12,43 @@ const MemberBillsSponsored: React.FC<MemberBillsSponsoredProps> = ({ memberBills
   const [offset, setOffset] = useState(0);
   const [bills, setBills] = useState<MemberCosponsoredBillInfo[] | []>(memberBillsSponsoredData.results[0].bills);
   const member_id = memberBillsSponsoredData.results[0].id;
+  let type = 'introduced';
 
-  const fetchData = async (offset: number) => {
-    try {
-      const res = await fetch(`/api/members/getBillsByMember?member_id=${member_id}&type=introduced&offset=${offset}`);
-      const json = await res.json();
-      setData(json);
-      setBills(json.results[0].bills);
-    } catch (error) {
-      console.error("Error fetching the data:", error);
-    }
-  };
+  // const fetchData = async (offset: number) => {
+  //   try {
+  //     const res = await fetch(`/api/members/getBillsByMember?member_id=${member_id}&type=introduced&offset=${offset}`);
+  //     const json = await res.json();
+  //     setData(json);
+  //     setBills(json.results[0].bills);
+  //   } catch (error) {
+  //     console.error("Error fetching the data:", error);
+  //   }
+  // };
 
   // useEffect(() => {
   //   fetchData(offset);
   // }, [offset]);
 
   // Handlers
-  const handleClick = () => {
-    setOffset(offset + 20);
+  const handleNext = async () => {
+    const newOffset = offset + 20;
+    const res = await fetch(
+      `/api/members/getBillsSponsored?member_id=${member_id}&offset=${newOffset}&type=${type}`
+      );
+      const newBillsData = await res.json();
+      console.log(newBillsData);
+      setBills(newBillsData.results[0].bills);
+      setOffset(newOffset);
   };
-  const handleBack = () => {
-    setOffset(offset-20)
-  }
+  const handleBack = async () => {
+    const newOffset = offset - 20;
+    const res = await fetch(
+      `/api/members/getBillsCosponsored?member_id=${member_id}&offset=${newOffset}&type=${type}`
+      );
+      const newBillsData = await res.json();
+      setBills(newBillsData.results[0].bills);
+      setOffset(newOffset);
+  };
 
   const handleOpenLink = (url: string) => {
     window.open(url, "_blank");
@@ -52,7 +66,7 @@ const MemberBillsSponsored: React.FC<MemberBillsSponsoredProps> = ({ memberBills
       {(offset>0) && (
         <button onClick={handleBack}>Back</button>
       )}
-      <button onClick={handleClick}>Next</button>
+      <button onClick={handleNext}>Next</button>
     </div>
   );
 };

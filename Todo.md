@@ -3,7 +3,8 @@ TODO:
  - [x] add type to member bills sponsored
  - [x] export the billitem component in cosponsored bills and sponsored bills
  - [ ] make the bills sponsored page the first page, which means i gotta fix the way i fetch data
- - [ ] add a back button to all my components with offsets
+ - [x] add a back button to all my components with offsets
+ - [ ] remove next button when no more bills left
 
 
 - add lookup politicians feature somewhere
