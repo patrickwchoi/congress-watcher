@@ -86,10 +86,10 @@ const MemberVoteHistory: React.FC<memberVoteHistoryProps> = ({ member_id }) => {
           ))}
         </div>
       ))}
-      {(offset>0 && (<button onClick={handleBack}>
-        Back
-      </button>))}
-      <button onClick={handleNext}>Next</button>
+      
+      <p>Viewing results {offset+1} - {offset+votes.length}</p>
+      {(offset>0 && (<button onClick={handleBack}>Back</button>))}
+      {(votes.length==20) && (<button onClick={handleNext}>Next</button>)}
     </div>
   );
 };
