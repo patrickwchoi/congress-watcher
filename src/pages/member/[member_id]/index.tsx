@@ -29,7 +29,7 @@ const tabStyles = {
   },
 };
 
-const MemberPage: React.FC<SpecificMemberProps> = ({ member_id, memberData, memberVoteHistoryData, pictureData, memberBillsSponsoredData}) => {
+const MemberPage: React.FC<SpecificMemberProps> = ({ member_id, memberData, pictureData, memberBillsSponsoredData}) => {
   const [value, setValue] = useState("1"); //tab value
   const handleChange = (_event: any, newValue: string) => {
     setValue(newValue);
@@ -50,24 +50,22 @@ const MemberPage: React.FC<SpecificMemberProps> = ({ member_id, memberData, memb
               centered={true} 
               sx={tabStyles}
             >
-              <Tab label="Voting History" value="1" />
+              <Tab label="Bills Sponsored" value="1" />
               <Tab label="Bills Cosponsored" value="2" />
-              <Tab label="Bills Sponsored" value="3" />
+              <Tab label="Voting History" value="3" />
             </TabList>
           </Box>
           <TabPanel value="1">
-            <MemberVotingHistory member_id={member_id} />
+            <MemberBillsSponsored memberBillsSponsoredData={memberBillsSponsoredData}/>
           </TabPanel>
           <TabPanel value="2">
             <MemberBillsCosponsored member_id={member_id}/>
           </TabPanel>
           <TabPanel value="3">
-            <MemberBillsSponsored memberBillsSponsoredData={memberBillsSponsoredData}/>
+            <MemberVotingHistory member_id={member_id} />
           </TabPanel>
         </TabContext>
       </Box>
-
-      
     </div>
   );
 };
@@ -115,20 +113,20 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   );
   const pictureData = await pictureRes.json();
 
-  const memberVoteHistoryRes = await fetch(
-    `https://api.propublica.org/congress/v1/members/${member_id}/votes.json`,
-    {
-      headers: { "X-API-Key": process.env.PROPUBLICA_API_KEY },
-    }
-  );
-  const memberVoteHistoryData = await memberVoteHistoryRes.json()
+  // const memberVoteHistoryRes = await fetch(
+  //   `https://api.propublica.org/congress/v1/members/${member_id}/votes.json`,
+  //   {
+  //     headers: { "X-API-Key": process.env.PROPUBLICA_API_KEY },
+  //   }
+  // );
+  // const memberVoteHistoryData = await memberVoteHistoryRes.json()
 
 
   return {
     props: {
       member_id,
       memberData,
-      memberVoteHistoryData,
+      // memberVoteHistoryData,
       pictureData,
       memberBillsSponsoredData,
     },

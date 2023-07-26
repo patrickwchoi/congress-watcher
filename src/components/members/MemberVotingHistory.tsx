@@ -10,9 +10,6 @@ const MemberVoteHistory: React.FC<memberVoteHistoryProps> = ({ member_id }) => {
   const [votes, setVotes] = useState<MemberVoteInfo[] | []>([]);
   const [offset, setOffset] = useState(0); //add type here
 
-  // const member_id = memberVoteHistoryData.results[0].member_id;
-
-  
   const fetchData = async (offset: number) => {
     try {
       const res = await fetch(
@@ -49,11 +46,11 @@ const MemberVoteHistory: React.FC<memberVoteHistoryProps> = ({ member_id }) => {
     setOffset(newOffset);
   };
 
-  if (!votes) {
+  if (!data) {
     return <div>No Recent Votes</div>;
   }
 
-  // Organize votes by bill
+  // Organize votes by bill in an obj
   const votesByBill: { [billId: string]: MemberVoteInfo[] } = {};
   for (const vote of votes) {
     const billId = vote.bill.bill_id;

@@ -14,21 +14,6 @@ const MemberBillsSponsored: React.FC<MemberBillsSponsoredProps> = ({ memberBills
   const member_id = memberBillsSponsoredData.results[0].id;
   let type = 'introduced';
 
-  // const fetchData = async (offset: number) => {
-  //   try {
-  //     const res = await fetch(`/api/members/getBillsByMember?member_id=${member_id}&type=introduced&offset=${offset}`);
-  //     const json = await res.json();
-  //     setData(json);
-  //     setBills(json.results[0].bills);
-  //   } catch (error) {
-  //     console.error("Error fetching the data:", error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchData(offset);
-  // }, [offset]);
-
   // Handlers
   const handleNext = async () => {
     const newOffset = offset + 20;

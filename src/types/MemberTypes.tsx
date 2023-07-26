@@ -207,11 +207,12 @@ export interface MemberBillResult{
   offset: number;
   bills: MemberCosponsoredBillInfo[]; //same as the cosponsored bill infos
 }
-export interface SpecificMemberProps {
+
+export interface SpecificMemberProps { //what's fetched as you enter the member page
   member_id: number;
   memberData: SpecificMemberData;
   pictureData: MembersPictureData;
-  memberVoteHistoryData: MemberVoteHistoryData;
+  // memberVoteHistoryData: MemberVoteHistoryData;
   memberBillsSponsoredData: MemberBillsSponsoredData;
   
 }
