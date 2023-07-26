@@ -92,7 +92,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   // const memberBillsCosponsoredData = await memberBillsCosponsoredRes.json()
 
   const memberBillsSponsoredRes = await fetch(
-    `https://api.propublica.org/congress/v1/members/${member_id}/bills/introduced.json`,
+    `https://api.propublica.org/congress/v1/members/${member_id}/bills/introduced.json?offset=0`,
     {
       headers: { "X-API-Key": process.env.PROPUBLICA_API_KEY },
     }
