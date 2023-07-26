@@ -56,7 +56,7 @@ const MemberPage: React.FC<SpecificMemberProps> = ({ member_id, memberData, memb
             </TabList>
           </Box>
           <TabPanel value="1">
-            <MemberVotingHistory memberVoteHistoryData={memberVoteHistoryData} />
+            <MemberVotingHistory member_id={member_id} />
           </TabPanel>
           <TabPanel value="2">
             <MemberBillsCosponsored member_id={member_id}/>

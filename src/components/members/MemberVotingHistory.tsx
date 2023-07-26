@@ -1,22 +1,52 @@
 import { MemberVoteHistoryData, MemberVoteInfo } from '@/types/MemberTypes';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface memberVoteHistoryProps {
-  memberVoteHistoryData: MemberVoteHistoryData;
+  member_id: number;
 }
 
-const MemberVoteHistory: React.FC<memberVoteHistoryProps> = ({ memberVoteHistoryData }) => {
-  const [votes, setVotes] = useState(memberVoteHistoryData.results[0].votes);
+const MemberVoteHistory: React.FC<memberVoteHistoryProps> = ({ member_id }) => {
+  const [data, setData] = useState<MemberVoteHistoryData | null>(null)
+  const [votes, setVotes] = useState<MemberVoteInfo[] | []>([]);
+  const [offset, setOffset] = useState(0); //add type here
 
-  let offset = 0;
-  const member_id = memberVoteHistoryData.results[0].member_id;
-  const handleClick = async () => {
-    offset += 20;
+  // const member_id = memberVoteHistoryData.results[0].member_id;
+
+  
+  const fetchData = async (offset: number) => {
+    try {
+      const res = await fetch(
+        `/api/members/getVoteHistory?member_id=${member_id}&offset=${offset}`
+      );
+      const json = await res.json();
+      setData(json);
+      setVotes(json.results[0].votes);
+    } catch (error) {
+      console.error("Error fetching the data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(offset);
+  }, []);
+  
+  const handleNext = async () => {
+    const newOffset = offset + 20
     const res = await fetch(
-      `/api/members/getVoteHistory?member_id=${member_id}&offset=${offset}`
+      `/api/members/getVoteHistory?member_id=${member_id}&offset=${newOffset}`
     );
     const newVoteData = await res.json();
     setVotes(newVoteData.results[0].votes);
+    setOffset(newOffset);
+  };
+  const handleBack = async () => {
+    const newOffset = offset - 20
+    const res = await fetch(
+      `/api/members/getVoteHistory?member_id=${member_id}&offset=${newOffset}`
+    );
+    const newVoteData = await res.json();
+    setVotes(newVoteData.results[0].votes);
+    setOffset(newOffset);
   };
 
   if (!votes) {
@@ -59,7 +89,10 @@ const MemberVoteHistory: React.FC<memberVoteHistoryProps> = ({ memberVoteHistory
           ))}
         </div>
       ))}
-      <button onClick={handleClick}>Next</button>
+      {(offset>0 && (<button onClick={handleBack}>
+        Back
+      </button>))}
+      <button onClick={handleNext}>Next</button>
     </div>
   );
 };
