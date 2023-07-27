@@ -1,8 +1,12 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { MemberListData, MemberListItemInfo } from '@/types/MemberTypes';
 
-const ListOfMembers = ({memberListData}) => {
-
-  const members = memberListData.results[0].members;
+interface ListOfMembersProps {
+  memberListData: MemberListData;
+}
+const ListOfMembers: React.FC<ListOfMembersProps> = ({memberListData}) => {
+  const [members, setMembers] = useState<MemberListItemInfo[] | []>(memberListData.results[0].members)
+  
   return(
     <div>
       {members.map((member) => (
