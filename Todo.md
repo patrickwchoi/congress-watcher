@@ -26,3 +26,4 @@ TODO:
 - add user functionality like following politicians, saving bills, etc. to the database and backend
   - connect to frontend
 - Tidy up
+
