@@ -3,8 +3,13 @@ import { useEffect, useState } from "react";
 import type { GetServerSideProps } from "next";
 import AllBills from "@/components/bills/AllBills";
 import ListOfMembers from "@/components/members/ListOfMembers";
+import { MemberListData } from '@/types/MemberTypes';
 
-const HomePage = ({memberListData}) => {
+interface HomePageProps {
+  memberListData: MemberListData;
+}
+
+const HomePage:React.FC<HomePageProps> = ({memberListData}) => {
   return (
     <div>
       <h1>home page</h1>
