@@ -29,24 +29,45 @@ const ListOfMembers: React.FC<ListOfMembersProps> = ({memberListData}) => {
     setChamber('house');
     fetchData();
   }
+  const handleCongressNum = (congressNum: number) => {
+    setCongress(congressNum);
+    fetchData();
+  }
+
   useEffect(() => {
     switch (order) {
       case 'alphabetical':
-        
+        const sortedMembersByAlpha = [...members].sort((a, b) => (a.last_name > b.last_name) ? 1 : -1);
+        setMembers(sortedMembersByAlpha);
         break;
-    
-      default:
+      case 'party':
+        const sortedMembersByParty = [...members].sort((a, b) => (a.party > b.party) ? 1 : -1);
+        console.log(sortedMembersByParty)
+        setMembers(sortedMembersByParty);
+        break;
+      case 'state':
+        const sortedMembersByState = [...members].sort((a, b) => (a.state > b.state) ? 1 : -1);
+        setMembers(sortedMembersByState);
         break;
     } 
-  }, [order])
+}, [order]);
+
   return(
     <div>
       <button onClick={handleSenate}>Senate</button>
       <button onClick={handleHouse}>House</button>
+      <div className="flex flex-row border">
+        <button onClick={() => {setOrder('alphabetical')}}>alphabetical</button>
+        <button onClick={() => {setOrder('party')}}>party</button>
+        <button onClick={() => {setOrder('state')}}>state</button>
+
+      </div>
       {members.map((member) => (
         <div key={member.id}>
           {member.first_name} {member.last_name}
           id: {member.id}
+          <p>{member.party}</p>
+          <p>{member.state}</p>
         </div>
       ))}
     </div>
