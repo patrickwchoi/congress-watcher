@@ -12,7 +12,6 @@ import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-
 const tabStyles = {
   "& .MuiTab-root": {
     textTransform: "capitalize",
@@ -83,14 +82,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   );
   const memberData = await memberRes.json();
 
-  // const memberBillsCosponsoredRes = await fetch(
-  //   `https://api.propublica.org/congress/v1/members/${member_id}/bills/cosponsored.json`,
-  //   {
-  //     headers: { "X-API-Key": process.env.PROPUBLICA_API_KEY },
-  //   }
-  // );
-  // const memberBillsCosponsoredData = await memberBillsCosponsoredRes.json()
-
   const memberBillsSponsoredRes = await fetch(
     `https://api.propublica.org/congress/v1/members/${member_id}/bills/introduced.json?offset=0`,
     {
@@ -112,15 +103,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     `http://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&piprop=original&titles=${wikiTitle}`,
   );
   const pictureData = await pictureRes.json();
-
-  // const memberVoteHistoryRes = await fetch(
-  //   `https://api.propublica.org/congress/v1/members/${member_id}/votes.json`,
-  //   {
-  //     headers: { "X-API-Key": process.env.PROPUBLICA_API_KEY },
-  //   }
-  // );
-  // const memberVoteHistoryData = await memberVoteHistoryRes.json()
-
 
   return {
     props: {
