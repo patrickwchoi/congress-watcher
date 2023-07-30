@@ -7,8 +7,14 @@ TODO:
  - [x] remove next button when no more bills left
 
 
-- add lookup politicians feature somewhere
-- add lookup all politicians and politicians by state somewhere
+TODO:
+  - [ ] add lookup politicians feature somewhere
+  - [x] add lookup all politicians 
+  - [ ] add looku politicians by state
+  - [ ] limit number of politicians shown to first 20
+  - [ ] add a search button
+  - [ ] layout and style
+
 
 ## Bills Branch:
 - refactor api calls to use getServerSideProps
