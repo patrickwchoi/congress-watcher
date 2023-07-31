@@ -12,6 +12,7 @@ const SearchMemberBar: React.FC<SearchMemberBarProps> = ({allMembers}) => {
 
   useEffect(() => {
     if (searchTerm.length < 1) {
+      setFilteredMembers([]);
       return;
     }
     const trimmedSearchTerm = searchTerm.trim()
@@ -27,8 +28,12 @@ const SearchMemberBar: React.FC<SearchMemberBarProps> = ({allMembers}) => {
   };
   return(
     <div className='bg-red-100'>
-      <input type="text" placeholder='Search Member' value={searchTerm} onChange={handleChange}/>
-      
+      <input 
+        type="text" 
+        placeholder='Search Member' 
+        value={searchTerm} 
+        onChange={handleChange}
+      />
       {filteredMembers.length>0 && (
         <div className='search-results'>
           <ul>
