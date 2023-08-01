@@ -2,11 +2,16 @@ import React, { useEffect, useState } from "react";
 import { MemberListData, MemberListItemInfo } from '@/types/MemberTypes';
 
 interface ListOfMembersProps {
-  memberListData: MemberListData;
+  houseMemberListData: MemberListData;
 }
-const ListOfMembers: React.FC<ListOfMembersProps> = ({memberListData}) => {
-  const [data, setData] = useState(memberListData);
-  const [members, setMembers] = useState<MemberListItemInfo[] | []>(memberListData.results[0].members)
+/**
+ * 
+ * @param houseMemberListData
+ * @returns 
+ */
+const ListOfMembers: React.FC<ListOfMembersProps> = ({houseMemberListData}) => {
+  const [data, setData] = useState(houseMemberListData); 
+  const [members, setMembers] = useState<MemberListItemInfo[] | []>(houseMemberListData.results[0].members)
   const [order, setOrder] = useState('alphabetical');
   const [congress, setCongress] = useState(117);
   const [chamber, setChamber] = useState('house');
@@ -17,7 +22,6 @@ const ListOfMembers: React.FC<ListOfMembersProps> = ({memberListData}) => {
     ); 
     const json = await res.json();
     await setData(json);
-    console.log(data)
     setMembers(data.results[0].members);
   };
 
@@ -42,7 +46,6 @@ const ListOfMembers: React.FC<ListOfMembersProps> = ({memberListData}) => {
         break;
       case 'party':
         const sortedMembersByParty = [...members].sort((a, b) => (a.party > b.party) ? 1 : -1);
-        console.log(sortedMembersByParty)
         setMembers(sortedMembersByParty);
         break;
       case 'state':
@@ -63,9 +66,10 @@ const ListOfMembers: React.FC<ListOfMembersProps> = ({memberListData}) => {
 
       </div>
       {members.map((member) => (
-        <div key={member.id}>
-          {member.first_name} {member.last_name}
-          id: {member.id}
+        <div key={member.id}  className="member-item flex flex-col m-4 p-2 border-2 border-black" >
+          <a href={`member/${member.id}`} className="">
+            <h1 className="text-1xl font-bold">{member.first_name} {member.last_name}</h1>
+          </a>
           <p>{member.party}</p>
           <p>{member.state}</p>
         </div>

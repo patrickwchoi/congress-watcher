@@ -10,12 +10,19 @@ interface HomePageProps {
   houseData: MemberListData;
 }
 
+/**
+ * @param senateData
+ * @param houseData
+ * 
+ * Senate and house data props are fetched during site buildup. Contains house and senate members of 117 congress.
+ * Must be built up again to fetch new data after new election.
+ */
 const HomePage:React.FC<HomePageProps> = ({senateData, houseData}) => {
   return (
     <div>
       <h1>home page</h1>
       <SearchMemberBar allMembers={[...senateData.results[0].members, ...houseData.results[0].members]}/>
-      <ListOfMembers memberListData={houseData}/>
+      <ListOfMembers houseMemberListData={houseData}/>
       <AllBills />
     </div>
   );
@@ -75,7 +82,6 @@ const uniqueHouseMembers = [...new Set((houseData.results[0] as { members: Membe
       //send in senateData and houseData with updated members list
       senateData: {...senateData, results: [{...senateData.results[0], members: uniqueSenateMembers}]},
       houseData: {...houseData, results: [{...houseData.results[0], members: uniqueHouseMembers}]},
-      // allMembers: [...senateData.results[0].members, ...houseData.results[0].members],
     },
   };
 }

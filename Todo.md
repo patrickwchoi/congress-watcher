@@ -8,11 +8,10 @@ TODO:
 
 
 TODO:
-  - [ ] add lookup politicians feature somewhere
+  - [x] add lookup politicians feature somewhere
   - [x] add lookup all politicians 
   - [ ] add looku politicians by state
   - [ ] limit number of politicians shown to first 20
-  - [ ] add a search button
   - [ ] layout and style
 
 

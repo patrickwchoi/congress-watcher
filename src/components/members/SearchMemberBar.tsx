@@ -39,7 +39,14 @@ const SearchMemberBar: React.FC<SearchMemberBarProps> = ({allMembers}) => {
           <ul>
             {filteredMembers.map((member) => (
               <li key={member.id + 'searchres'}>
+                <a 
+                  className="bill-sponsor flex flex-row gap-x-2 hover:cursor-pointer"
+                  href={`member/${member.id}`}
+                  
+                >
+                  
                 {member.first_name} {member.last_name}
+                </a>
               </li>
             ))}
           </ul>
