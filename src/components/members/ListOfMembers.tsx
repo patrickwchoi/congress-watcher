@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { MemberListData, MemberListItemInfo } from '@/types/MemberTypes';
+import {getStateName} from '@/utils/util'
 
 interface ListOfMembersProps {
   houseMemberListData: MemberListData;
 }
 /**
  * 
- * @param houseMemberListData
+ * @param houseMemberListData - starts with member data for the House of Reps. in congress 117
  * @returns 
  */
 const ListOfMembers: React.FC<ListOfMembersProps> = ({houseMemberListData}) => {
@@ -71,7 +72,7 @@ const ListOfMembers: React.FC<ListOfMembersProps> = ({houseMemberListData}) => {
             <h1 className="text-1xl font-bold">{member.first_name} {member.last_name}</h1>
           </a>
           <p>{member.party}</p>
-          <p>{member.state}</p>
+          <p>{getStateName(member.state)}</p>
         </div>
       ))}
     </div>
