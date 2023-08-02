@@ -22,7 +22,7 @@ const SearchMemberBar: React.FC<SearchMemberBarProps> = ({allMembers}) => {
     ));
   }, [searchTerm]);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setSearchTerm(e.target.value);
   };

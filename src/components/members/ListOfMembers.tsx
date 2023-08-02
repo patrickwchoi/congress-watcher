@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MemberListData, MemberListItemInfo } from '@/types/MemberTypes';
-import {getStateName} from '@/utils/util'
+import {getState, getParty} from '@/utils/util'
 
 interface ListOfMembersProps {
   houseMemberListData: MemberListData;
@@ -57,24 +57,32 @@ const ListOfMembers: React.FC<ListOfMembersProps> = ({houseMemberListData}) => {
 }, [order]);
 
   return(
-    <div>
+    <div className="flex flex-col items-center">
       <button onClick={handleSenate}>Senate</button>
       <button onClick={handleHouse}>House</button>
       <div className="flex flex-row border">
         <button onClick={() => {setOrder('alphabetical')}}>alphabetical</button>
         <button onClick={() => {setOrder('party')}}>party</button>
         <button onClick={() => {setOrder('state')}}>state</button>
-
       </div>
-      {members.map((member) => (
-        <div key={member.id}  className="member-item flex flex-col m-4 p-2 border-2 border-black" >
-          <a href={`member/${member.id}`} className="">
-            <h1 className="text-1xl font-bold">{member.first_name} {member.last_name}</h1>
-          </a>
-          <p>{member.party}</p>
-          <p>{getStateName(member.state)}</p>
-        </div>
-      ))}
+
+      <div className="grid grid-cols-3 gap-4 mb-4 font-bold text-lg w-2/3 ">
+        <div>Name</div>
+        <div>State</div>
+        <div>Party</div>
+      </div>
+
+      <div className="divide-y divide-gray-200 w-2/3">
+        {members.map((member) => (
+          <div key={member.id}  className="member-item grid grid-cols-3 gap-4 py-2 " >
+            <a href={`member/${member.id}`} className="">
+              <h1 className="text-1xl font-bold">{member.first_name} {member.last_name}</h1>
+            </a>
+            <p>{getState(member.state)}</p>
+            <p>{getParty(member.party)}</p>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

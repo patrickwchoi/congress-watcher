@@ -20,6 +20,8 @@ TODO:
 - add/fix content and how/how_many is displayed
 - css
 
+## Random:
+- [ ] add icon for new window
 
 ## Timeline:
 - finish politicians content

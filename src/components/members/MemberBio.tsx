@@ -1,6 +1,6 @@
 import { SpecificMemberInfo } from "@/types/MemberTypes";
 import Image from "next/image";
-import {getStateName} from '@/utils/util'
+import {getState, getParty} from '@/utils/util'
 interface MemberBioProps {
   memberInfo: SpecificMemberInfo;
   portraitUrl: string;
@@ -17,16 +17,7 @@ const MemberBio: React.FC<MemberBioProps> = ({ memberInfo, portraitUrl }) => {
   const handleFacebook = () => {
     window.open(memberInfo.facebook_account, "_blank");
   }
-  const party = () => {
-    switch (memberInfo.current_party) {
-      case 'D':
-        return 'Democrat';
-      case 'R':
-        return 'Republican';
-      default:
-        return memberInfo.current_party;
-    }
-  }
+
   // const state = (acronym:string) => { //return full state name
   //   const stateNames: {[key:string] : string} = {'AL': 'Alabama', 'AK': 'Alaska', 'AZ': 'Arizona', 'AR': 'Arkansas', 'CA': 'California', 'CO': 'Colorado', 'CT': 'Connecticut', 'DE': 'Delaware', 'FL': 'Florida', 'GA': 'Georgia', 'HI': 'Hawaii', 'ID': 'Idaho', 'IL': 'Illinois', 'IN': 'Indiana', 'IA': 'Iowa', 'KS': 'Kansas', 'KY': 'Kentucky', 'LA': 'Louisiana', 'ME': 'Maine', 'MD': 'Maryland', 'MA': 'Massachusetts', 'MI': 'Michigan', 'MN': 'Minnesota', 'MS': 'Mississippi', 'MO': 'Missouri', 'MT': 'Montana', 'NE': 'Nebraska', 'NV': 'Nevada', 'NH': 'New Hampshire', 'NJ': 'New Jersey', 'NM': 'New Mexico', 'NY': 'New York', 'NC': 'North Carolina', 'ND': 'North Dakota', 'OH': 'Ohio', 'OK': 'Oklahoma', 'OR': 'Oregon', 'PA': 'Pennsylvania', 'RI': 'Rhode Island', 'SC': 'South Carolina', 'SD': 'South Dakota', 'TN': 'Tennessee', 'TX': 'Texas', 'UT': 'Utah', 'VT': 'Vermont', 'VA': 'Virginia', 'WA': 'Washington', 'WV': 'West Virginia', 'WI': 'Wisconsin', 'WY': 'Wyoming'};
   //   if (stateNames[acronym]){
@@ -53,8 +44,8 @@ const MemberBio: React.FC<MemberBioProps> = ({ memberInfo, portraitUrl }) => {
         </div>
         <div>
 
-          <p>Party: {party()}</p>
-          <p>State: {getStateName(roles.state)}</p>
+          <p>Party: {getParty(memberInfo.current_party)}</p>
+          <p>State: {getState(roles.state)}</p>
           <p>Next election: {roles.next_election}</p>
           <p>Title: {roles.title}</p>
           <p>In office: {inOffice()}</p>
