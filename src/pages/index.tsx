@@ -19,11 +19,10 @@ interface HomePageProps {
  */
 const HomePage:React.FC<HomePageProps> = ({senateData, houseData}) => {
   return (
-    <div>
-      <h1>home page</h1>
-      <SearchMemberBar allMembers={[...senateData.results[0].members, ...houseData.results[0].members]}/>
+    <div className="flex flex-row">
       <ListOfMembers houseMemberListData={houseData}/>
-      <AllBills />
+      <SearchMemberBar allMembers={[...senateData.results[0].members, ...houseData.results[0].members]}/>
+      {/* <AllBills /> */}
     </div>
   );
 };

@@ -34,6 +34,10 @@ const ListOfMembers: React.FC<ListOfMembersProps> = ({houseMemberListData}) => {
     setChamber('house');
     fetchData();
   }
+  const getButtonStyle = (targetChamber: string) => {
+    return chamber === targetChamber ? 'text-xl font-bold underline' : 'text-xl';
+  };
+  
   const handleCongressNum = (congressNum: number) => {
     setCongress(congressNum);
     fetchData();
@@ -58,15 +62,17 @@ const ListOfMembers: React.FC<ListOfMembersProps> = ({houseMemberListData}) => {
 
   return(
     <div className="flex flex-col items-center">
-      <button onClick={handleSenate}>Senate</button>
-      <button onClick={handleHouse}>House</button>
-      <div className="flex flex-row border">
-        <button onClick={() => {setOrder('alphabetical')}}>alphabetical</button>
-        <button onClick={() => {setOrder('party')}}>party</button>
-        <button onClick={() => {setOrder('state')}}>state</button>
+      <div className="flex flex-row border gap-3">
+        <button onClick={() => {setOrder('alphabetical')}}>ALPHABETICAL</button>
+        <button onClick={() => {setOrder('party')}}>PARTY</button>
+        <button onClick={() => {setOrder('state')}}>STATE</button>
+      </div>
+      <div className="house-senate-buttons flex flex-row gap-4">
+        <button onClick={handleHouse} className={getButtonStyle('house')}>HOUSE</button>
+        <button onClick={handleSenate} className={getButtonStyle('senate')}>SENATE</button>
       </div>
 
-      <div className="grid grid-cols-3 gap-4 mb-4 font-bold text-lg w-2/3 ">
+      <div className="grid grid-cols-3 gap-4 mb-4 font-bold text-lg w-2/3 border-b-2 border-black">
         <div>Name</div>
         <div>State</div>
         <div>Party</div>

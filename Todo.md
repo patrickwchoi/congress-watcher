@@ -25,7 +25,7 @@ TODO:
 
 ## Timeline:
 - finish politicians content
-- add header
+- add header component to _app.tsx
 - add sidebar
 - combine everything into a homepage, with tabs and links to all relevant content
 - css to style and look nice (should be an MVP at this point)
