@@ -5,6 +5,8 @@ import AllBills from "@/components/bills/AllBills";
 import ListOfMembers from "@/components/members/ListOfMembers";
 import { MemberListData, MemberListItemInfo } from '@/types/MemberTypes';
 import SearchMemberBar from "@/components/members/SearchMemberBar";
+import { getUniqueMembers } from "@/utils/util";
+
 interface HomePageProps {
   senateData: MemberListData;
   houseData: MemberListData;
@@ -48,13 +50,9 @@ export const getStaticProps:GetStaticProps = async () =>  { //runs only during s
   const houseData = await houseListRes.json();
 
 
-  const uniqueSenateMembers = [...new Set((senateData.results[0] as { members: MemberListItemInfo[] }).members.map(member => member.id))].map(id => {
-    return (senateData.results[0] as { members: MemberListItemInfo[] }).members.find(member => member.id === id);
-});
+  const uniqueSenateMembers = getUniqueMembers(senateData);
+  const uniqueHouseMembers = getUniqueMembers(houseData);
 
-const uniqueHouseMembers = [...new Set((houseData.results[0] as { members: MemberListItemInfo[] }).members.map(member => member.id))].map(id => {
-    return (houseData.results[0] as { members: MemberListItemInfo[] }).members.find(member => member.id === id);
-});
 
   return {
     props: {

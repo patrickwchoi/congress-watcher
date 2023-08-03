@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MemberListData, MemberListItemInfo } from '@/types/MemberTypes';
-import {getState, getParty} from '@/utils/util'
+import {getState, getParty, getUniqueMembers} from '@/utils/util'
 
 interface ListOfMembersProps {
   houseMemberListData: MemberListData;
@@ -11,28 +11,28 @@ interface ListOfMembersProps {
  * @returns 
  */
 const ListOfMembers: React.FC<ListOfMembersProps> = ({houseMemberListData}) => {
-  const [data, setData] = useState(houseMemberListData); 
-  const [members, setMembers] = useState<MemberListItemInfo[] | []>(houseMemberListData.results[0].members)
+  // const [data, setData] = useState(houseMemberListData); 
+  const [members, setMembers] = useState<MemberListItemInfo[] | []>(getUniqueMembers(houseMemberListData))
   const [order, setOrder] = useState('alphabetical');
   const [congress, setCongress] = useState(117);
   const [chamber, setChamber] = useState('house');
 
-  const fetchData = async () => {
+  const fetchData = async (targetChamber: string) => {
     const res = await fetch(
-      `/api/members/getMembers?congress=${congress}&chamber=${chamber}`,
+      `/api/members/getMembers?congress=${congress}&chamber=${targetChamber}`,
     ); 
     const json = await res.json();
-    await setData(json);
-    setMembers(data.results[0].members);
+    // await setData(json);
+    setMembers(getUniqueMembers(json));
   };
 
   const handleSenate =  () => {
     setChamber('senate');
-    fetchData();
+    fetchData('senate');
   }
   const handleHouse = () => {
     setChamber('house');
-    fetchData();
+    fetchData('house');
   }
   const getButtonStyle = (targetChamber: string) => {
     return chamber === targetChamber ? 'text-xl font-bold underline' : 'text-xl';
@@ -40,22 +40,41 @@ const ListOfMembers: React.FC<ListOfMembersProps> = ({houseMemberListData}) => {
   
   const handleCongressNum = (congressNum: number) => {
     setCongress(congressNum);
-    fetchData();
+    fetchData(chamber);
+  }
+
+  const sortAlphabetically = (members: any) => {
+    return [...members].sort((a, b) => (a.last_name > b.last_name) ? 1 : -1);
+  }
+
+  const sortPartyThenAlphabetically = (members: any) => {
+    return [...members].sort((a, b) => {
+      if (a.party === b.party) {
+        return a.last_name.localeCompare(b.last_name);
+      }
+      return a.party.localeCompare(b.party);
+    });
+  }
+  
+  const sortStateThenAlphabetically = (members: any) => {
+    return [...members].sort((a, b) => {
+      if (a.state === b.state) {
+        return a.last_name.localeCompare(b.last_name);
+      }
+      return a.state.localeCompare(b.state);
+    });
   }
 
   useEffect(() => {
     switch (order) {
       case 'alphabetical':
-        const sortedMembersByAlpha = [...members].sort((a, b) => (a.last_name > b.last_name) ? 1 : -1);
-        setMembers(sortedMembersByAlpha);
+        setMembers(sortAlphabetically(members));
         break;
       case 'party':
-        const sortedMembersByParty = [...members].sort((a, b) => (a.party > b.party) ? 1 : -1);
-        setMembers(sortedMembersByParty);
+        setMembers(sortPartyThenAlphabetically(members));
         break;
       case 'state':
-        const sortedMembersByState = [...members].sort((a, b) => (a.state > b.state) ? 1 : -1);
-        setMembers(sortedMembersByState);
+        setMembers(sortStateThenAlphabetically(members));
         break;
     } 
 }, [order]);
