@@ -21,9 +21,14 @@ interface HomePageProps {
  */
 const HomePage:React.FC<HomePageProps> = ({senateData, houseData}) => {
   return (
-    <div className="flex flex-row w-4/5">
-      <ListOfMembers houseMemberListData={houseData}/>
-      <SearchMemberBar allMembers={[...senateData.results[0].members, ...houseData.results[0].members]}/>
+    <div className="flex flex-col w-4/5">
+      <div className="pb-3">
+        <h2>Politicians</h2>
+      </div>
+      <div className="flex flex-row justify-between">
+        <ListOfMembers houseMemberListData={houseData}/>
+        <SearchMemberBar allMembers={[...senateData.results[0].members, ...houseData.results[0].members]}/>
+      </div>
       {/* <AllBills /> */}
     </div>
   );

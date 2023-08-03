@@ -4,6 +4,7 @@
 
 :root {
   --primary-color: rgb(240, 240, 240);
+  --primary-hover: rgb(230, 230, 230);
   /* --secondary-color: #ffed4a;
   --accent-color: #e3342f; */
 }
@@ -16,6 +17,9 @@
   h3 {
     @apply text-xl ;
   }
+  button {
+    @apply border-0 cursor-pointer px-0.5 rounded-sm;
+  }
 
   a:hover {
     @apply underline underline-offset-2 text-blue-700;
@@ -23,7 +27,5 @@
   a:visited {
     @apply text-purple-600;
   }
-  button:hover{
-    @apply cursor-pointer;
-  }
+
 }

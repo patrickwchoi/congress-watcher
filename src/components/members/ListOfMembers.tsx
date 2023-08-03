@@ -34,8 +34,11 @@ const ListOfMembers: React.FC<ListOfMembersProps> = ({houseMemberListData}) => {
     setChamber('house');
     fetchData('house');
   }
-  const getButtonStyle = (targetChamber: string) => {
-    return chamber === targetChamber ? 'text-xl font-bold underline' : 'text-xl';
+  const getChamberButtonStyle = (targetChamber: string) => {
+    return chamber === targetChamber ? 'text-xl font-bold underline' : 'text-xl hover:bg-primary-hover';
+  };
+  const getOrderButtonStyle = (targetOrder: string) => {
+    return order === targetOrder ? 'text-l font-bold underline' : 'text-l hover:bg-primary-hover';
   };
   
   const handleCongressNum = (congressNum: number) => {
@@ -55,7 +58,7 @@ const ListOfMembers: React.FC<ListOfMembersProps> = ({houseMemberListData}) => {
       return a.party.localeCompare(b.party);
     });
   }
-  
+
   const sortStateThenAlphabetically = (members: any) => {
     return [...members].sort((a, b) => {
       if (a.state === b.state) {
@@ -80,24 +83,27 @@ const ListOfMembers: React.FC<ListOfMembersProps> = ({houseMemberListData}) => {
 }, [order]);
 
   return(
-    <div className="flex flex-col">
-      <div className="flex flex-row border gap-3">
-        <button onClick={() => {setOrder('alphabetical')}}>ALPHABETICAL</button>
-        <button onClick={() => {setOrder('party')}}>PARTY</button>
-        <button onClick={() => {setOrder('state')}}>STATE</button>
-      </div>
-      <div className="house-senate-buttons flex flex-row gap-4">
-        <button onClick={handleHouse} className={getButtonStyle('house')}>HOUSE</button>
-        <button onClick={handleSenate} className={getButtonStyle('senate')}>SENATE</button>
+    <div className="flex flex-col w-2/3">
+      <div className="flex flex-row gap-3 justify-between">
+        <div className="house-senate-buttons flex flex-row gap-4">
+          <button onClick={handleHouse} className={getChamberButtonStyle('house')}>HOUSE</button>
+          <button onClick={handleSenate} className={getChamberButtonStyle('senate')}>SENATE</button>
+        </div>
+        <div className="flex flex-row gap-2 items-center">
+          <h4>SORT BY:</h4>
+          <button onClick={() => {setOrder('alphabetical')}} className={getOrderButtonStyle('alphabetical')}>ALPHABETICAL</button>
+          <button onClick={() => {setOrder('party')}} className={getOrderButtonStyle('party')}>PARTY</button>
+          <button onClick={() => {setOrder('state')}} className={getOrderButtonStyle('state')}>STATE</button>
+        </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-4 mb-4 font-bold text-lg w-2/3 border-b-2 border-black">
+      <div className="grid grid-cols-3 gap-4 mb-4 font-bold text-lg w-11/12 border-b-2 border-black">
         <div>Name</div>
         <div>State</div>
         <div>Party</div>
       </div>
 
-      <div className="divide-y divide-gray-200 w-2/3">
+      <div className="divide-y divide-gray-200 w-11/12">
         {members.map((member) => (
           <div key={member.id}  className="member-item grid grid-cols-3 gap-4 py-2 " >
             <a href={`member/${member.id}`} className="">

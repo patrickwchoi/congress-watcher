@@ -16,6 +16,7 @@ module.exports = {
       },
       backgroundColor: {
         'primary': 'var(--primary-color)',
+        'primary-hover': 'var(--primary-hover)',
         // 'secondary': 'var(--secondary-color)',
         // 'accent': 'var(--accent-color)'
     },
