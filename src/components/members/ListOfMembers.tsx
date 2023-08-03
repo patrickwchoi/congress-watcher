@@ -61,7 +61,7 @@ const ListOfMembers: React.FC<ListOfMembersProps> = ({houseMemberListData}) => {
 }, [order]);
 
   return(
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col">
       <div className="flex flex-row border gap-3">
         <button onClick={() => {setOrder('alphabetical')}}>ALPHABETICAL</button>
         <button onClick={() => {setOrder('party')}}>PARTY</button>

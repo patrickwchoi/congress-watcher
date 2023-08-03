@@ -22,6 +22,7 @@ TODO:
 
 ## Random:
 - [ ] add icon for new window
+- [ ] add recent tweets from user
 
 ## Timeline:
 - finish politicians content

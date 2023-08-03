@@ -14,6 +14,11 @@ module.exports = {
       fontFamily: {
         'sans': ['Times New Roman', 'serif'],
       },
+      backgroundColor: {
+        'primary': 'var(--primary-color)',
+        // 'secondary': 'var(--secondary-color)',
+        // 'accent': 'var(--accent-color)'
+    },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

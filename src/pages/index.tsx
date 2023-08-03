@@ -19,33 +19,13 @@ interface HomePageProps {
  */
 const HomePage:React.FC<HomePageProps> = ({senateData, houseData}) => {
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row w-4/5">
       <ListOfMembers houseMemberListData={houseData}/>
       <SearchMemberBar allMembers={[...senateData.results[0].members, ...houseData.results[0].members]}/>
       {/* <AllBills /> */}
     </div>
   );
 };
-
-// export const getServerSideProps: GetServerSideProps = async (context) => {
-//   if (!process.env.PROPUBLICA_API_KEY) {
-//     throw new Error("PROPUBLICA_API_KEY must be defined");
-//   }
-
-//   const memberListRes = await fetch( //start with list of 117 House members
-//     `https://api.propublica.org/congress/v1/117/house/members.json`,
-//     {
-//       headers: { "X-API-Key": process.env.PROPUBLICA_API_KEY },
-//     },
-//   );
-//   const memberListData = await memberListRes.json();
-
-//   return {
-//     props: {
-//       memberListData,
-//     }
-//   }
-// }
 
 export const getStaticProps:GetStaticProps = async () =>  { //runs only during site buildup
   if (!process.env.PROPUBLICA_API_KEY) {

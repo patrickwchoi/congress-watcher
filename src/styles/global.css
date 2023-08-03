@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primary-color: rgb(240, 240, 240);
+  /* --secondary-color: #ffed4a;
+  --accent-color: #e3342f; */
+}
+
+
 @layer components {
   h2 {
     @apply text-2xl font-bold;
