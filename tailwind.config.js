@@ -14,10 +14,13 @@ module.exports = {
       fontFamily: {
         'sans': ['Times New Roman', 'serif'],
       },
+      colors: {
+        'blue-link': '#2a548c',
+      },
       backgroundColor: {
         'primary': 'var(--primary-color)',
         'primary-hover': 'var(--primary-hover)',
-        // 'secondary': 'var(--secondary-color)',
+        'secondary': 'var(--secondary-color)',
         // 'accent': 'var(--accent-color)'
     },
       backgroundImage: {

@@ -27,15 +27,16 @@ const SearchMemberBar: React.FC<SearchMemberBarProps> = ({allMembers}) => {
     setSearchTerm(e.target.value);
   };
   return(
-    <div className='bg-red-100 '>
+    <div className='w-60'>
       <input 
         type="text" 
-        placeholder='Search Member' 
+        placeholder='Search Politician' 
         value={searchTerm} 
         onChange={handleChange}
+        className='w-full px-1 rounded-sm border-2 border-gray-400 focus:outline-none focus:border-black'
       />
       {filteredMembers.length>0 && (
-        <div className='search-results  overflow-scroll h-64'>
+        <div className='search-results p-1 pt-0 overflow-y-scroll h-64 bg-secondary border border-black'>
           <ul>
             {filteredMembers.map((member) => (
               <li key={member.id + 'searchres'}>
@@ -45,7 +46,7 @@ const SearchMemberBar: React.FC<SearchMemberBarProps> = ({allMembers}) => {
                   
                 >
                   
-                {member.first_name} {member.last_name}
+                {member.first_name} {member.last_name} ({member.state})
                 </a>
               </li>
             ))}

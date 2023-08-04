@@ -97,20 +97,22 @@ const ListOfMembers: React.FC<ListOfMembersProps> = ({houseMemberListData}) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-4 mb-4 font-bold text-lg w-11/12 border-b-2 border-black">
+      <div className="grid grid-cols-4 gap-4 my-4 font-bold text-lg  border-b-2 border-black">
         <div>Name</div>
         <div>State</div>
         <div>Party</div>
+        <div>Phone</div>
       </div>
 
-      <div className="divide-y divide-gray-200 w-11/12">
+      <div className="divide-y divide-gray-300 w-11/12">
         {members.map((member) => (
-          <div key={member.id}  className="member-item grid grid-cols-3 gap-4 py-2 " >
+          <div key={member.id}  className="member-item grid grid-cols-4 gap-4 py-2 " >
             <a href={`member/${member.id}`} className="">
-              <h1 className="text-1xl font-bold">{member.first_name} {member.last_name}</h1>
+              <h1 className="text-1xl font-bold text-blue-link">{member.first_name} {member.last_name}</h1>
             </a>
             <p>{getState(member.state)}</p>
             <p>{getParty(member.party)}</p>
+            <p>{member.phone}</p>
           </div>
         ))}
       </div>
