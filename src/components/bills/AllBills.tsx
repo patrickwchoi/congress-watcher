@@ -33,12 +33,14 @@ const AllBills = () => {
   }, [searchQuery, offset]);
 
   return (
-    <div className="flex flex-col bg-blue-100">
-      <BillSearchBar
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-      />
-      <h1>Bills:</h1>
+    <div className="flex flex-col ">
+      <div className="flex flex-row items-center justify-between">
+        <h2>Bills:</h2>
+        <BillSearchBar
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          />
+      </div>
       {data &&
         data.results[0].bills.map((bill) => (
           <BillItem key={bill.bill_id} bill={bill} />

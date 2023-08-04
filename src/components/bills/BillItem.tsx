@@ -19,7 +19,7 @@ const BillItem: React.FC<BillProps> = ({ bill }) => {
     window.open(`/member/${bill.sponsor_id}`, "_blank");
   }
   return (
-    <div className="bill-component flex flex-col m-4 p-2 border-2 border-black">
+    <div className="bill-component flex flex-col my-4 p-2 border-2 border-black">
       <a
         className="bill-header flex flex-row justify-between border-b-2 border-gray-500"
         href={`/bill/${bill.bill_id}`}
@@ -30,15 +30,15 @@ const BillItem: React.FC<BillProps> = ({ bill }) => {
 
       <div className="bill-content flex flex-col">
         <a 
-          className="bill-sponsor flex flex-row gap-x-2 hover:cursor-pointer"
+          className="bill-sponsor flex flex-row gap-x-2 hover:cursor-pointer items-center"
           href={`member/${bill.sponsor_id}`}
           target="_blank"
         >
-          <h3 className="text-1xl">Sponsor: {bill.sponsor_title} {bill.sponsor_name},</h3>
-          <p className="text-base">{bill.sponsor_party} - {bill.sponsor_state}</p>
+          <h3>Sponsor: {bill.sponsor_title} {bill.sponsor_name},</h3>
+          <h3>{bill.sponsor_party} - {bill.sponsor_state}</h3>
         </a>
         <div className="bill-status">
-          <h3 className="text-1xl">Status: {bill.active ? "Active" : "Inactive"}</h3>
+          <p className="text-1xl">Status: {bill.active ? "Active" : "Inactive"}</p>
           <p className="text-base">{bill.latest_major_action}</p>
         </div>
         <div className="bill-summary">
