@@ -11,7 +11,6 @@ TODO:
   - [x] add lookup politicians feature somewhere
   - [x] add lookup all politicians 
   - [ ] add looku politicians by state
-  - [ ] limit number of politicians shown to first 20
   - [ ] layout and style
 
 
@@ -19,6 +18,7 @@ TODO:
 - refactor api calls to use getServerSideProps
 - add/fix content and how/how_many is displayed
 - css
+- [ ] need to add error handling to check if data from getServerByProps isnt correct
 
 ## Random:
 - [ ] add icon for new window

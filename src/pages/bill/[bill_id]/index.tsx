@@ -5,86 +5,22 @@ import { SpecificBillData, AmendmentsData, RelatedBillData, CosponsorsData } fro
 import BillPageInfo from "@/components/bills/BillPageInfo";
 import Cosponsors from "@/components/bills/Cosponsors";
 
+/**
+ * 
+ * @param bill_id - This is NOT just the bill number, this is billnum-congressnum 
+ * @returns 
+ */
 const BillPage = ({bill_id, billData, amendmentsData, cosponsorsData}) => {
-  // const router = useRouter();
-  // const { bill_id } = router.query; //derived from the folder name [bill_id].tsx
 
-  // const [billData, setBillData] = useState<SpecificBillData | null>(null);
-  // const [amendmentsData, setAmendmentsData] = useState<AmendmentsData | null>(
-  //   null,
-  // );
-  // const [relatedBillsData, setRelatedBillsData] =
-  //   useState<RelatedBillData | null>(null);
-  // const [cosponsorsData, setCosponsorsData] = useState<CosponsorsData | null>(
-  //   null,
-  // );
-
-  // const [billNum, setBillNum] = useState("");
-  // const [congress, setCongress] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-
-  // useEffect(() => {
-  //   //sets our state only after we get bill_id
-  //   if (bill_id && typeof bill_id === "string") {
-  //     setBillNum(bill_id.split("-")[0]);
-  //     setCongress(bill_id.split("-")[1]);
-  //   }
-  // }, [bill_id]);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const billRes = await fetch(
-  //       `/api/bills/searchSpecificBill?congress=${congress}&bill_num=${billNum}`,
-  //     ); //the url is what defines req in api page
-  //     const billJson = await billRes.json();
-  //     console.log("Received data from server:", billJson);
-  //     setBillData(billJson);
-
-  //     const amendmentsRes = await fetch(
-  //       `/api/bills/billAmendments?congress=${congress}&bill_num=${billNum}`,
-  //     );
-  //     const amendmentsJson = await amendmentsRes.json();
-  //     console.log("Received amendments data from server:", amendmentsJson);
-  //     setAmendmentsData(amendmentsJson);
-
-  //     const relatedBillsRes = await fetch(
-  //       `/api/bills/relatedBills?congress=${congress}&bill_num=${billNum}`,
-  //     );
-  //     const relatedBillsJson = await relatedBillsRes.json();
-  //     console.log("Received related bills data from server:", relatedBillsJson);
-  //     setRelatedBillsData(relatedBillsJson);
-
-  //     const cosponsorsRes = await fetch(
-  //       `/api/bills/billCosponsors?congress=${congress}&bill_num=${billNum}`,
-  //     );
-  //     const cosponsorsJson = await cosponsorsRes.json();
-  //     console.log("Received cosponsors data from server:", cosponsorsJson);
-  //     setCosponsorsData(cosponsorsJson);
-
-  //     if (billJson.status === "OK") {
-  //       setIsLoading(false);
-  //     }
-  //   };
-  //   fetchData();
-  // }, [congress, billNum]);
-
-  // if (isLoading) return <h1>Loading...</h1>;
-
-  console.log(billData)
+  
+  console.log(cosponsorsData)
   return (
     <div>
       <h2>Bill Page</h2>
-      {/* <BillPageInfo bill={billData.results[0]} /> */}
+      <BillPageInfo bill={billData.results[0]} />
 
-      {/* {billData && billData.results ? (
-        <BillPageInfo bill={billData.results[0]} />
-      ) : (
-        <h1>Cannot Find Bill</h1>
-      )} */}
-
-      {/* {amendmentsData &&
-      amendmentsData.results &&
-      amendmentsData.results[0].amendments.length != 0 ? (
+      {amendmentsData.results[0].amendments.length != 0 ? (
         <div>
           <h1>Amendments</h1>
           <ul>
@@ -97,7 +33,7 @@ const BillPage = ({bill_id, billData, amendmentsData, cosponsorsData}) => {
         </div>
       ) : (
         <h1>No amendments</h1>
-      )} */}
+      )}
 
       {/* {relatedBillsData && relatedBillsData.results.related_bills ? (
         <div>
@@ -115,13 +51,11 @@ const BillPage = ({bill_id, billData, amendmentsData, cosponsorsData}) => {
       )} */}
 
       {/* TODO: make button so it shows max 5 cosponsors unless button is pressed */}
-      {/* {cosponsorsData &&
-      cosponsorsData.results &&
-      cosponsorsData.results[0].cosponsors ? (
+      {cosponsorsData.results[0].cosponsors.length > 0 ? (
         <Cosponsors cosponsors={cosponsorsData.results[0].cosponsors} />
       ) : (
         <h1>No cosponsors</h1>
-      )} */}
+      )}
     </div>
   );
 };
@@ -153,7 +87,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   //gonna skip relatedbills bc doesnt usually show up
 
   const cosponsorsRes = await fetch(
-    `https://api.propublica.org/congress/v1/${congress}/bills/${bill_id}/cosponsors.json`,
+    `https://api.propublica.org/congress/v1/${congress}/bills/${bill_num}/cosponsors.json`,
     {
       headers: { "X-API-Key": process.env.PROPUBLICA_API_KEY },
     }
