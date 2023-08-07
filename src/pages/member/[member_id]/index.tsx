@@ -93,7 +93,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   //fetch using wiki API to get politician's main wiki picture using their fullname
   const firstname = memberData.results[0].first_name
   const lastname = memberData.results[0].last_name
-  const fullname = memberData.results[0].first_name + "_" + memberData.results[0].last_name;
   const wikiSearchRes = await fetch( //data includes list of wikiarticles based on query
     `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${firstname}%20${lastname}%20%politician&format=json`
   )

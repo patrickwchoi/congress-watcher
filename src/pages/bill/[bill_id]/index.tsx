@@ -70,15 +70,19 @@ const BillPage = ({bill_id, billData, amendmentsData, cosponsorsData}) => {
 
   // if (isLoading) return <h1>Loading...</h1>;
 
+  console.log(billData)
   return (
     <div>
-      {billData && billData.results ? (
+      <h2>Bill Page</h2>
+      {/* <BillPageInfo bill={billData.results[0]} /> */}
+
+      {/* {billData && billData.results ? (
         <BillPageInfo bill={billData.results[0]} />
       ) : (
         <h1>Cannot Find Bill</h1>
-      )}
+      )} */}
 
-      {amendmentsData &&
+      {/* {amendmentsData &&
       amendmentsData.results &&
       amendmentsData.results[0].amendments.length != 0 ? (
         <div>
@@ -93,7 +97,7 @@ const BillPage = ({bill_id, billData, amendmentsData, cosponsorsData}) => {
         </div>
       ) : (
         <h1>No amendments</h1>
-      )}
+      )} */}
 
       {/* {relatedBillsData && relatedBillsData.results.related_bills ? (
         <div>
@@ -111,25 +115,27 @@ const BillPage = ({bill_id, billData, amendmentsData, cosponsorsData}) => {
       )} */}
 
       {/* TODO: make button so it shows max 5 cosponsors unless button is pressed */}
-      {cosponsorsData &&
+      {/* {cosponsorsData &&
       cosponsorsData.results &&
       cosponsorsData.results[0].cosponsors ? (
         <Cosponsors cosponsors={cosponsorsData.results[0].cosponsors} />
       ) : (
         <h1>No cosponsors</h1>
-      )}
+      )} */}
     </div>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { bill_id } = context.query; 
+  const bill_num = bill_id.split("-")[0];
+  const congress = bill_id.split("-")[1];
   if (!process.env.PROPUBLICA_API_KEY) {
     throw new Error("PROPUBLICA_API_KEY must be defined");
   }
-  let congress = '117'; //subject to change if i add functionality to view past bills before 117
+  // let congress = '117'; //subject to change if i add functionality to view past bills before 117
   const billRes = await fetch(
-    `https://api.propublica.org/congress/v1/${congress}/bills/${bill_id}.json`,
+    `https://api.propublica.org/congress/v1/${congress}/bills/${bill_num}.json`,
     {
       headers: { "X-API-Key": process.env.PROPUBLICA_API_KEY },
     },
@@ -137,7 +143,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const billData = await billRes.json();
 
   const amendmentsRes = await fetch(
-    `https://api.propublica.org/congress/v1/${congress}/bills/${bill_id}/amendments.json`,
+    `https://api.propublica.org/congress/v1/${congress}/bills/${bill_num}/amendments.json`,
     {
       headers: { "X-API-Key": process.env.PROPUBLICA_API_KEY },
     }
