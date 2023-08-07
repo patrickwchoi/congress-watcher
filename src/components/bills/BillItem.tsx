@@ -41,10 +41,7 @@ const BillItem: React.FC<BillProps> = ({ bill }) => {
           <p className="text-1xl">Status: {bill.active ? "Active" : "Inactive"}</p>
           <p className="text-base">{bill.latest_major_action}</p>
         </div>
-        <div className="bill-summary">
-          <p>{bill.summary}</p>
-          <p>Debugging Purposes: {bill.bill_id}</p>
-        </div>
+
         <button onClick={handleLink}>View on Congres.gov</button>
       </div>
     </div>
