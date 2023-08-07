@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import type { GetServerSideProps } from "next";
 import { SpecificBillData, AmendmentsData, RelatedBillData, CosponsorsData } from "@/types/BillTypes";
 import BillPageInfo from "@/components/bills/BillPageInfo";
@@ -10,7 +10,13 @@ import Cosponsors from "@/components/bills/Cosponsors";
  * @param bill_id - This is NOT just the bill number, this is billnum-congressnum 
  * @returns 
  */
-const BillPage = ({bill_id, billData, amendmentsData, cosponsorsData}) => {
+interface BillPageProps {
+  bill_id: string;
+  billData: SpecificBillData;
+  amendmentsData: AmendmentsData;
+  cosponsorsData: CosponsorsData;
+}
+const BillPage: React.FC<BillPageProps> = ({bill_id, billData, amendmentsData, cosponsorsData}) => {
 
   const [isLoading, setIsLoading] = useState(true);
   
@@ -62,6 +68,11 @@ const BillPage = ({bill_id, billData, amendmentsData, cosponsorsData}) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { bill_id } = context.query; 
+  if (typeof bill_id !== "string") {
+    return {
+      notFound: true, // this will return a 404 page
+    };
+  }
   const bill_num = bill_id.split("-")[0];
   const congress = bill_id.split("-")[1];
   if (!process.env.PROPUBLICA_API_KEY) {
