@@ -23,6 +23,12 @@ TODO:
 - [ ] add recent tweets from user
 - [ ] make all anchor tags into Links
 
+- [ ] make it descending if you click twice
+- [ ] fix "next" buttons to look nice
+- [ ] make 404 page , and error handling if data isnt valid when id is wrong
+- [ ] message when search query for bills comes empty
+- [ ] fix 117 stuff
+
 ## Timeline:
 - finish politicians content
 - add header component to _app.tsx

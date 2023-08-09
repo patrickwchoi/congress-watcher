@@ -40,14 +40,14 @@ export const getStaticProps:GetStaticProps = async () =>  { //runs only during s
   }
 
   const senateListRes = await fetch( //start with list of 117 House members
-    `https://api.propublica.org/congress/v1/117/senate/members.json`,
+    `https://api.propublica.org/congress/v1/118/senate/members.json`,
     {
       headers: { "X-API-Key": process.env.PROPUBLICA_API_KEY },
     },
   );
   const senateData = await senateListRes.json();
   const houseListRes = await fetch( //start with list of 117 House members
-    `https://api.propublica.org/congress/v1/117/house/members.json`,
+    `https://api.propublica.org/congress/v1/118/house/members.json`,
     {
       headers: { "X-API-Key": process.env.PROPUBLICA_API_KEY },
     },

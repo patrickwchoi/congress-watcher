@@ -14,7 +14,7 @@ const ListOfMembers: React.FC<ListOfMembersProps> = ({houseMemberListData}) => {
   // const [data, setData] = useState(houseMemberListData); 
   const [members, setMembers] = useState<MemberListItemInfo[] | []>(getUniqueMembers(houseMemberListData))
   const [order, setOrder] = useState('alphabetical');
-  const [congress, setCongress] = useState(117);
+  const [congress, setCongress] = useState(118);
   const [chamber, setChamber] = useState('house');
 
   const fetchData = async (targetChamber: string) => {
