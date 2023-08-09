@@ -108,7 +108,7 @@ const ListOfMembers: React.FC<ListOfMembersProps> = ({houseMemberListData}) => {
         {members.map((member) => (
           <div key={member.id}  className="member-item grid grid-cols-4 gap-4 py-2 " >
             <a href={`member/${member.id}`} className="">
-              <h1 className="text-1xl font-bold text-blue-link">{member.first_name} {member.last_name}</h1>
+              <h3 className="politician-link">{member.first_name} {member.last_name}</h3>
             </a>
             <p>{getState(member.state)}</p>
             <p>{getParty(member.party)}</p>

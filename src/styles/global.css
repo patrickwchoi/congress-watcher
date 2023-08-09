@@ -13,13 +13,16 @@
 
 @layer components {
   h1 {
-    
+    @apply text-3xl font-bold;
   }
   h2 {
     @apply text-2xl font-bold;
   }
   h3 {
-    @apply text-xl ;
+    @apply text-xl font-bold;
+  }
+  h4 {
+    @apply text-xl;
   }
   button {
     @apply border-0 cursor-pointer px-0.5 rounded-sm;
@@ -29,7 +32,10 @@
     @apply underline underline-offset-2 text-blue-700;
   }
   a:visited {
-    @apply text-purple-600;
+    @apply text-purple-600; 
   }
 
+  .politician-link{
+    @apply text-blue-link 
+  }
 }
