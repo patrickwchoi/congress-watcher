@@ -9,18 +9,21 @@ const MemberBillItem: React.FC<MemberBillItem> = ({bill}) => {
   return (
     <div className="bill-component flex flex-col m-4 p-2 border-2 border-black">
       <a className="bill-header flex flex-row justify-between border-b-2 border-gray-500" href={`/bill/${bill.bill_id}`}>
-        <h1 className="text-1xl font-bold">{bill.number} - {bill.title}</h1>
-        <p className="text-base">Introduced {bill.introduced_date}</p>
+        <h3 className="">{bill.number} - {bill.title}</h3>
+        <p className="">Introduced {bill.introduced_date}</p>
       </a>
 
       <div className="bill-content flex flex-col">
-        <a className="bill-sponsor flex flex-row gap-x-2 hover:cursor-pointer" href={`./${bill.sponsor_id}`}>
-          <h3 className="text-1xl">Sponsor: {bill.sponsor_title} {bill.sponsor_name},</h3>
-          <p className="text-base">{bill.sponsor_party} - {bill.sponsor_state}</p>
+        <a 
+          className="bill-sponsor flex flex-row gap-x-2 hover:cursor-pointer items-center" 
+          href={`./${bill.sponsor_id}`}
+        >
+          <h3 className="">Sponsor: {bill.sponsor_title} {bill.sponsor_name},</h3>
+          <h3 className="">{bill.sponsor_party} - {bill.sponsor_state}</h3>
         </a>
         <div className="bill-status">
-          <h3 className="text-1xl">Status: {bill.active ? "Active" : "Inactive"}</h3>
-          <p className="text-base">{bill.latest_major_action}</p>
+          <h3 className="">Status: {bill.active ? "Active" : "Inactive"}</h3>
+          <p className="">{bill.latest_major_action}</p>
         </div>
         <div className="bill-summary">
           <p>{bill.summary}</p>

@@ -24,7 +24,7 @@ const BillItem: React.FC<BillProps> = ({ bill }) => {
         className="bill-header flex flex-row justify-between border-b-2 border-gray-500"
         href={`/bill/${bill.bill_id}`}
       >
-        <h1 className="text-1xl font-bold">{bill.number} - {bill.title}</h1>
+        <h3 className="">{bill.number} - {bill.title}</h3>
         <p className="text-base">Introduced {bill.introduced_date}</p>
       </a>
 
@@ -34,8 +34,8 @@ const BillItem: React.FC<BillProps> = ({ bill }) => {
           href={`member/${bill.sponsor_id}`}
           target="_blank"
         >
-          <h3>Sponsor: {bill.sponsor_title} {bill.sponsor_name},</h3>
-          <h3>{bill.sponsor_party} - {bill.sponsor_state}</h3>
+          <h4>Sponsor: {bill.sponsor_title} {bill.sponsor_name},</h4>
+          <h4>{bill.sponsor_party} - {bill.sponsor_state}</h4>
         </a>
         <div className="bill-status">
           <p className="text-1xl">Status: {bill.active ? "Active" : "Inactive"}</p>
