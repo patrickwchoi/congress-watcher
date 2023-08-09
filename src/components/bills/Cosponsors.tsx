@@ -63,7 +63,7 @@ const Cosponsors: React.FC<CosponsorsProps> = ({ cosponsors }) => {
   );
 
   return (
-    <div className="w-1/2 flex flex-col">
+    <div className="w-1/2 flex flex-col ">
       {cosponsors.length ? (
         <div>
           <h2>Bill Cosponsors ({cosponsors.length}):</h2>

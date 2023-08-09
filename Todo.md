@@ -15,14 +15,13 @@ TODO:
 
 
 ## Bills Branch:
-- refactor api calls to use getServerSideProps
-- add/fix content and how/how_many is displayed
-- css
 - [ ] need to add error handling to check if data from getServerByProps isnt correct
+- [ ] make allBills fetch from serverside
 
 ## Random:
 - [ ] add icon for new window
 - [ ] add recent tweets from user
+- [ ] make all anchor tags into Links
 
 ## Timeline:
 - finish politicians content

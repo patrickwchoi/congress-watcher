@@ -17,9 +17,7 @@ const BillPage: React.FC<BillPageProps> = ({bill_id, billData, amendmentsData, c
 
   return (
     <div>
-      <h2>Bill Page</h2>
       <BillPageInfo bill={billData.results[0]} />
-
       <div className="bill-bottom flex flex-row items-center">
         <div className="amendments-container w-1/2">
           {amendmentsData.results[0].amendments.length != 0 ? (

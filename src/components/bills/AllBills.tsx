@@ -17,6 +17,7 @@ import { SearchBillData } from "@/types/BillTypes";
  * @returns {JSX.Element} The AllBills component.
  */
 
+//when I have time, reconfigure this so it fetches from server side
 const AllBills = () => {
   const [data, setData] = useState<SearchBillData | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
