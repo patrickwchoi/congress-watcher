@@ -28,6 +28,7 @@ TODO:
 - [ ] make 404 page , and error handling if data isnt valid when id is wrong
 - [ ] message when search query for bills comes empty
 - [ ] fix 117 stuff
+- [ ] member page css
 
 ## Timeline:
 - finish politicians content
