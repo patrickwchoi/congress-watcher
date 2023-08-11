@@ -35,11 +35,11 @@ const MemberBio: React.FC<MemberBioProps> = ({ memberInfo, portraitUrl }) => {
   }
   
   return (
-    <div className="flex flex-row w-2/3 bg-green-200">
+    <div className="flex flex-row w-2/3 bg-green-200 justify-between">
       <Image src={portraitUrl} alt="member image" width={200} height={300} />
-      <div className="memberbio-text flex flex-col">
+      <div className="memberbio-text flex flex-col w-1/2">
         <div className="flex flex-row">
-          <h2>{memberInfo.first_name} {memberInfo.last_name}</h2>
+          <h1>{memberInfo.first_name} {memberInfo.last_name}</h1>
           {/* <h4>- {memberInfo.current_party}</h4> */}
         </div>
         <div>
