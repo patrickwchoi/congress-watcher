@@ -1,6 +1,6 @@
 import { SpecificMemberInfo } from "@/types/MemberTypes";
 import Image from "next/image";
-import {getState, getParty} from '@/utils/util'
+import {getState, getParty, getAge} from '@/utils/util'
 interface MemberBioProps {
   memberInfo: SpecificMemberInfo;
   portraitUrl: string;
@@ -35,25 +35,29 @@ const MemberBio: React.FC<MemberBioProps> = ({ memberInfo, portraitUrl }) => {
   }
   
   return (
-    <div className="flex flex-row w-2/3 bg-green-200 justify-between">
-      <Image src={portraitUrl} alt="member image" width={200} height={300} />
-      <div className="memberbio-text flex flex-col w-1/2">
-        <div className="flex flex-row">
-          <h1>{memberInfo.first_name} {memberInfo.last_name}</h1>
-          {/* <h4>- {memberInfo.current_party}</h4> */}
+    <div className="flex flex-row w-4/5 border bg-primary-dark border-black border-2 rounded-sm shadow-xl p-4 justify-around">
+      <Image src={portraitUrl} alt="member image" width={220} height={300} />
+      <div className="memberbio-text flex flex-col ">
+        <div className="header-section text-center">
+          <h1>{roles.short_title} {memberInfo.first_name} {memberInfo.last_name}</h1>
         </div>
-        <div>
-
-          <p>Party: {getParty(memberInfo.current_party)}</p>
-          <p>State: {getState(roles.state)}</p>
-          <p>Next election: {roles.next_election}</p>
-          <p>Title: {roles.title}</p>
-          <p>In office: {inOffice()}</p>
-          <p>number of terms: {memberInfo.roles.length}</p>
+        <div className="info-section grid grid-cols-2 gap-4">
+          <div>
+            <h4>Party: {getParty(memberInfo.current_party)}</h4>
+            <h4>State: {getState(roles.state)}</h4>
+            <h4>Age: {(getAge(memberInfo.date_of_birth))}</h4>
+            <h4>Next election: {roles.next_election}</h4>
+          </div>
+          <div>
+            <h4>In office: {inOffice()}</h4>
+            <h4>Number of terms: {memberInfo.roles.length}</h4>
+          </div>
         </div>
-        <a href={memberInfo.url} target="_blank" rel="noopener noreferrer">
-          View Official Website
-        </a>
+        <div className="website-link">
+          <a href={memberInfo.url} target="_blank" rel="noopener noreferrer">
+            View Official Website
+          </a>
+        </div>
       </div>
     </div>
   );

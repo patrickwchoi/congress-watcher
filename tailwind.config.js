@@ -21,6 +21,7 @@ module.exports = {
         'primary': 'var(--primary-color)',
         'primary-hover': 'var(--primary-hover)',
         'secondary': 'var(--secondary-color)',
+        'primary-dark': 'var(--primary-dark)',
         // 'accent': 'var(--accent-color)'
     },
       backgroundImage: {

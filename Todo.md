@@ -5,6 +5,11 @@ TODO:
  - [x] make the bills sponsored page the first page, which means i gotta fix the way i fetch data
  - [x] add a back button to all my components with offsets
  - [x] remove next button when no more bills left
+ - [ ] download pictures of congressmen on build time
+ Fix member Bio:
+  - add a vote against and with party % visualization
+  - add list of committees
+  - add age/birthday
 
 
 TODO:
