@@ -35,13 +35,13 @@ const MemberBio: React.FC<MemberBioProps> = ({ memberInfo, portraitUrl }) => {
   }
   
   return (
-    <div className="flex flex-row w-4/5 border bg-primary-dark border-black border-2 rounded-sm shadow-xl p-4 justify-around">
+    <div className="flex flex-col sm:flex-row items-center w-4/5 border bg-primary-dark border-black border-2 rounded-sm shadow-xl px-1 p-4 sm:px-4 justify-around">
       <Image src={portraitUrl} alt="member image" width={220} height={300} />
-      <div className="memberbio-text flex flex-col ">
+      <div className="memberbio-text flex flex-col w-4/5 sm:w-1/2">
         <div className="header-section text-center">
           <h1>{roles.short_title} {memberInfo.first_name} {memberInfo.last_name}</h1>
         </div>
-        <div className="info-section grid grid-cols-2 gap-4">
+        <div className="info-section sm:grid sm:grid-cols-2 gap-4">
           <div>
             <h4>Party: {getParty(memberInfo.current_party)}</h4>
             <h4>State: {getState(roles.state)}</h4>
