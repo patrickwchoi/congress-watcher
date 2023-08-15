@@ -6,7 +6,7 @@ const Header = () => {
     window.location.href = '/';
   }
   return (
-    <div className="header flex flex-row w-full py-4 mb-4 bg-blue-100 justify-center">
+    <div className="header flex flex-row w-full py-4 mb-4 bg-light-accent border-b-2 border-dark-accent justify-center">
       <div className="header-content w-4/5 flex flex-row items-center ">
         <div className="logo flex flex-col cursor-pointer w-fit" onClick={handleHome}>
           <h2>Congress Watcher</h2>

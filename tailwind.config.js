@@ -12,7 +12,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        'sans': ['Times New Roman', 'serif'],
+        'sans': ['serif'],
       },
       colors: {
         'blue-link': '#2a548c',
@@ -22,8 +22,12 @@ module.exports = {
         'primary-hover': 'var(--primary-hover)',
         'secondary': 'var(--secondary-color)',
         'primary-dark': 'var(--primary-dark)',
-        // 'accent': 'var(--accent-color)'
-    },
+        'light-accent': 'var(--light-accent-color)',
+        'dark-accent': 'var(--dark-accent-color)'
+      },
+      borderColor: {
+        'dark-accent': 'var(--dark-accent-color)',
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

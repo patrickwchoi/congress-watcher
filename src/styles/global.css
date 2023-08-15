@@ -7,6 +7,9 @@
   --primary-hover: rgb(230, 230, 230);
   --secondary-color: rgb(250, 250, 250);
   --primary-dark: rgb(220, 220, 220);
+
+  --light-accent-color: rgb(199, 219, 199);
+  --dark-accent-color: rgb(132, 145, 132);
   /* --secondary-color: #ffed4a;
   --accent-color: #e3342f; */
 }

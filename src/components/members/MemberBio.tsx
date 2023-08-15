@@ -43,14 +43,14 @@ const MemberBio: React.FC<MemberBioProps> = ({ memberInfo, portraitUrl }) => {
         </div>
         <div className="info-section sm:grid sm:grid-cols-2 gap-4">
           <div>
-            <h4>Party: {getParty(memberInfo.current_party)}</h4>
-            <h4>State: {getState(roles.state)}</h4>
-            <h4>Age: {(getAge(memberInfo.date_of_birth))}</h4>
-            <h4>Next election: {roles.next_election}</h4>
+            <h4><strong>Party: </strong>{getParty(memberInfo.current_party)}</h4>
+            <h4><strong>State: </strong>{getState(roles.state)}</h4>
+            <h4><strong>Age: </strong>{(getAge(memberInfo.date_of_birth))}</h4>
+            <h4><strong>Next election: </strong>{roles.next_election}</h4>
           </div>
           <div>
-            <h4>In office: {inOffice()}</h4>
-            <h4>Number of terms: {memberInfo.roles.length}</h4>
+            <h4><strong>In office: </strong>{inOffice()}</h4>
+            <h4><strong>Number of terms: </strong>{memberInfo.roles.length}</h4>
           </div>
         </div>
         <div className="website-link">
