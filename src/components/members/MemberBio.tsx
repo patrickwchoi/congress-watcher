@@ -50,13 +50,6 @@ const MemberBio: React.FC<MemberBioProps> = ({ memberInfo, portraitUrl }) => {
     );
   }
 
-  const inOffice = () => {
-    if (memberInfo.in_office){
-      return 'True';
-    }
-    return 'False';
-  }
-  
   return (
     <div className="flex flex-col sm:flex-row items-center w-4/5 border bg-primary-dark border-black border-2 rounded-sm shadow-xl px-1 p-4 sm:px-4 justify-around">
       <Image src={portraitUrl} alt="member image" width={220} height={300} />
@@ -73,7 +66,6 @@ const MemberBio: React.FC<MemberBioProps> = ({ memberInfo, portraitUrl }) => {
             <h4><strong>Next election: </strong>{roles.next_election}</h4>
           </div>
           <div>
-            <h4><strong>In office: </strong>{inOffice()}</h4>
             <h4><strong>Number of terms: </strong>{memberInfo.roles.length}</h4>
           </div>
         </div>
