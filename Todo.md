@@ -1,20 +1,11 @@
 ## Politicians Branch:
 TODO:
- - [x] add type to member bills sponsored
- - [x] export the billitem component in cosponsored bills and sponsored bills
- - [x] make the bills sponsored page the first page, which means i gotta fix the way i fetch data
- - [x] add a back button to all my components with offsets
- - [x] remove next button when no more bills left
+
  - [ ] download pictures of congressmen on build time
  Fix member Bio:
   - add a vote against and with party % visualization
   - add list of committees
-  - [x] add age/birthday
 
-
-TODO:
-  - [x] add lookup politicians feature somewhere
-  - [x] add lookup all politicians 
   - [ ] add looku politicians by state
   - [ ] layout and style
 
@@ -28,12 +19,10 @@ TODO:
 - [ ] add recent tweets from user
 - [ ] make all anchor tags into Links
 
-- [x] make it descending if you click twice
 - [ ] fix "next" buttons to look nice
 - [ ] make 404 page , and error handling if data isnt valid when id is wrong
 - [ ] message when search query for bills comes empty
-- [x] fix 117 stuff
-- [x] member page css
+- [ ] make reusable components for search bar, next button
 
 ## Timeline:
 - finish politicians content
