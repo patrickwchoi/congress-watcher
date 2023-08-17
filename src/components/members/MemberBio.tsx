@@ -27,8 +27,8 @@ const MemberBio: React.FC<MemberBioProps> = ({ memberInfo, portraitUrl }) => {
       const { congress, chamber, state, district, start_date, end_date } = role;
       const fullStateName = getState(state);
       const startYear = start_date ? start_date.split('-')[0] : '';
-      const endYear = end_date ? (end_date.split('-')[0] === "9999" ? "Present" : end_date.split('-')[0]) : '';
-  
+      //must update 2024 if it is 2024
+      const endYear = end_date ? (end_date.split('-')[0] >= "2024" ? "Present" : end_date.split('-')[0]) : '';
       if (role.chamber === recentChamber) {
         ans.pop();
         ans.push(<h4 key={role.congress}><strong>{chamber}</strong>: {fullStateName} ({recentStartYear}-{oldEndDate})</h4>);
@@ -40,11 +40,9 @@ const MemberBio: React.FC<MemberBioProps> = ({ memberInfo, portraitUrl }) => {
         const line = chamber === "House" ? 
           <h4 key={role.congress}><strong>{chamber}</strong>: {fullStateName}, District {district} ({startYear}-{endYear})</h4> :
           <h4 key={role.congress}><strong>{chamber}</strong>: {fullStateName} ({startYear}-{endYear})</h4>;
-  
         ans.push(line);
       }
     }
-  
     return (
       <div>
         {ans}
