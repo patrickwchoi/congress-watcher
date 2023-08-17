@@ -44,27 +44,29 @@ const MemberBio: React.FC<MemberBioProps> = ({ memberInfo, portraitUrl }) => {
       }
     }
     return (
-      <div>
+      <div className="mb-2">
         {ans}
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col sm:flex-row w-4/5 border bg-primary-dark border-black border-2 rounded-sm shadow-xl px-1 p-4 sm:px-4 justify-around">
+    <div className="flex flex-col sm:flex-row w-4/5 bg-primary-dark border-black border-2 rounded-sm shadow-xl px-1 p-4 sm:px-4 justify-around">
       <Image src={portraitUrl} alt="member image" width={220} height={300} />
-      <div className="memberbio-text items-center flex flex-col w-4/5 sm:w-1/2">
-        <div className="header-section text-center mb-2">
-          <h1>{roles.short_title} {memberInfo.first_name} {memberInfo.last_name}</h1>
-        </div>
-            <h4>{getMembershipSummary(memberInfo)}</h4>
-        <div className="info-section sm:grid sm:grid-cols-2 gap-4">
-          <div>
-            <h4><strong>Party: </strong>{getParty(memberInfo.current_party)}</h4>
-            <h4><strong>Age: </strong>{(getAge(memberInfo.date_of_birth))}</h4>
+      <div className="memberbio-text items-center flex flex-col w-4/5 sm:w-1/2 justify-between">
+        <div className="">
+          <div className="header-section text-center mb-2">
+            <h1>{roles.short_title} {memberInfo.first_name} {memberInfo.last_name}</h1>
           </div>
-          <div>
-            <h4><strong>Next election: </strong>{roles.next_election}</h4>
+              {getMembershipSummary(memberInfo)}
+          <div className="info-section sm:grid sm:grid-cols-2 gap-4">
+            <div>
+              <h4><strong>Party: </strong>{getParty(memberInfo.current_party)}</h4>
+              <h4><strong>Age: </strong>{(getAge(memberInfo.date_of_birth))}</h4>
+            </div>
+            <div>
+              <h4><strong>Next election: </strong>{roles.next_election}</h4>
+            </div>
           </div>
         </div>
         <div className="website-link">
