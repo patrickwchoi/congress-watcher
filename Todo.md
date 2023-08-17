@@ -9,7 +9,7 @@ TODO:
  Fix member Bio:
   - add a vote against and with party % visualization
   - add list of committees
-  - add age/birthday
+  - [x] add age/birthday
 
 
 TODO:
@@ -28,12 +28,12 @@ TODO:
 - [ ] add recent tweets from user
 - [ ] make all anchor tags into Links
 
-- [ ] make it descending if you click twice
+- [x] make it descending if you click twice
 - [ ] fix "next" buttons to look nice
 - [ ] make 404 page , and error handling if data isnt valid when id is wrong
 - [ ] message when search query for bills comes empty
-- [ ] fix 117 stuff
-- [ ] member page css
+- [x] fix 117 stuff
+- [x] member page css
 
 ## Timeline:
 - finish politicians content
