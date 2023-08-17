@@ -16,6 +16,7 @@ const ListOfMembers: React.FC<ListOfMembersProps> = ({houseMemberListData}) => {
   const [order, setOrder] = useState('alphabetical');
   const [congress, setCongress] = useState(118);
   const [chamber, setChamber] = useState('house');
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
 
   const fetchData = async (targetChamber: string) => {
     const res = await fetch(
@@ -45,28 +46,31 @@ const ListOfMembers: React.FC<ListOfMembersProps> = ({houseMemberListData}) => {
     setCongress(congressNum);
     fetchData(chamber);
   }
-
   const sortAlphabetically = (members: any) => {
-    return [...members].sort((a, b) => (a.last_name > b.last_name) ? 1 : -1);
-  }
+    let sortedMembers = [...members].sort((a, b) => a.last_name.localeCompare(b.last_name));
+    return sortDirection === 'desc' ? sortedMembers.reverse() : sortedMembers;
+}
 
-  const sortPartyThenAlphabetically = (members: any) => {
-    return [...members].sort((a, b) => {
-      if (a.party === b.party) {
-        return a.last_name.localeCompare(b.last_name);
-      }
-      return a.party.localeCompare(b.party);
+const sortPartyThenAlphabetically = (members: any) => {
+    let sortedMembers = [...members].sort((a, b) => {
+        if (a.party === b.party) {
+            return a.last_name.localeCompare(b.last_name);
+        }
+        return a.party.localeCompare(b.party);
     });
-  }
+    return sortDirection === 'desc' ? sortedMembers.reverse() : sortedMembers;
+}
 
   const sortStateThenAlphabetically = (members: any) => {
-    return [...members].sort((a, b) => {
-      if (a.state === b.state) {
-        return a.last_name.localeCompare(b.last_name);
-      }
-      return a.state.localeCompare(b.state);
+    let sortedMembers = [...members].sort((a, b) => {
+        if (a.state === b.state) {
+            return a.last_name.localeCompare(b.last_name);
+        }
+        return a.state.localeCompare(b.state);
     });
+    return sortDirection === 'desc' ? sortedMembers.reverse() : sortedMembers;
   }
+
 
   useEffect(() => {
     switch (order) {
