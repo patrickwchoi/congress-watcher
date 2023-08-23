@@ -10,10 +10,8 @@ const AboutPage = () => {
       <div className="flex flex-row">
         <section className="content w-3/4 bg-gray-100 p-8 rounded shadow">
           <section className="purpose mb-6">
-            <h2 className="mb-4">Purpose</h2>
             <p className="mb-4">
-              I made this website to provide users with a straightforward method of tracking news related to the United States Congress.
-            </p>
+              Congress Watcher is a web application designed to simplify access to US Congress news. </p>
             <p>
               The data used in this site is primarily sourced from ProPublica's Congress API.
               <a href="https://projects.propublica.org/api-docs/congress-api/" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline ml-2">
@@ -34,7 +32,11 @@ const AboutPage = () => {
               <li className="mb-2">Next.js with Typescript</li>
               <li className="mb-2">Tailwind.css</li>
             </ul>
-            <p>This site uses Server Side Rendering to fetch data from the ProPublica API. Congress members are fetched during build time, while more recent activities like bills are fetched when necessary</p>
+            <p>
+              This site is built with the server-side rendering capabilities of Next.js to efficiently fetch and present real-time data.
+              REST-ful 3rd party APIs like ProPublica and Wikipedia are integrated using Next.js’s built-in API utilities, and is styled with TailwindCSS. 
+              Congress members are fetched during build time, while more recent activities like bills are fetched when necessary
+            </p>
           </section>
         </section>
         {/* Sidebar */}
