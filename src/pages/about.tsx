@@ -13,7 +13,7 @@ const AboutPage = () => {
             <p className="mb-4">
               Congress Watcher is a web application designed to simplify access to US Congress news. </p>
             <p>
-              The data used in this site is primarily sourced from ProPublica's Congress API.
+              The data used in this site is primarily sourced from ProPublica&rsquo;s Congress API.
               <a href="https://projects.propublica.org/api-docs/congress-api/" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline ml-2">
                 (Visit ProPublica)
               </a>
